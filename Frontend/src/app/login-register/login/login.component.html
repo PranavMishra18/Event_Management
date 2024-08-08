@@ -1,0 +1,26 @@
+<h1 class="title">Login Page</h1>
+
+<mat-card class="login-card">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="login-form">
+
+    <mat-error *ngIf="error" class="general-error">{{ error }} <br></mat-error>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput type="text" name="username" ngModel #username="ngModel" required>
+      <mat-error *ngIf="username.hasError('required')">Username is required.</mat-error>
+      
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" name="password" ngModel #password="ngModel" required>
+      <mat-error *ngIf="password.hasError('required')">Password is required.</mat-error>
+      
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="full-width">Login</button>
+    
+    
+  </form>
+</mat-card>

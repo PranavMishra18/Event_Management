@@ -1,0 +1,15 @@
+
+<!-- <app-navbar></app-navbar> -->
+
+
+<!-- <p *ngIf="role === 'ADMIN' " >Admin's aakhe only</p> -->
+
+
+
+<app-dc-approved *ngIf="role === 'DEPARTMENT_COORDINATOR'" [userId]="userId"></app-dc-approved>
+
+<app-hod-approved *ngIf="role === 'HOD'" [userId]="userId"></app-hod-approved>
+
+<app-dean-approved *ngIf="role === 'DEAN'" [userId]="userId"></app-dean-approved>
+
+<app-iqac-approved *ngIf="role === 'IQAC'" [userId]="userId"></app-iqac-approved>

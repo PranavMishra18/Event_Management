@@ -1,0 +1,80 @@
+.active-link{
+    background-color: #1d2d45;
+}
+
+.title {
+    text-align: center;
+    margin: 20px;
+    color: #3f51b5;
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  .sub-title{
+
+    margin-bottom: 25px;
+    margin-left: 280px;
+    color: #3f51b5;
+    font-size: 2em;
+    font-weight: bold;
+    text-decoration: underline;
+
+  }
+
+  .customclr {
+    margin-top: 40px;
+    margin-right: 19px;
+    background-color: #4c6f92;
+    font-size: larger;
+    font-weight: 0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.customclr:hover {
+    background-color: #00C1A1;
+}
+
+.customclr-active {
+    background-color: #00C1A1;
+}
+
+
+
+
+.firstbtn{
+    margin-left: 20px;
+}
+
+.success{
+    background-color: green;
+}
+
+h1{
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+h3{
+    margin-left: 22px;
+}
+
+form{
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+mat-form-field{
+    width: 750px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+
+.desc{
+    height:200px;
+}

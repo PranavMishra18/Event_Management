@@ -1,0 +1,27 @@
+ <div class="background">
+  <app-navbar></app-navbar>
+
+  <div class="container">
+    <h1 class="title">Event Information</h1>
+    <mat-card class="event-card">
+      <h1 class="sub-title">Viewing Event '{{event.eventTitle}}'</h1>
+      <div class="form-field" *ngFor="let field of eventFields; let i = index">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>{{field.label}}</mat-label>
+          <input matInput [value]="field.value" readonly>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="full-width description" appearance="outline">
+        <mat-label>Event Description</mat-label>
+        <textarea matInput [value]="event.eventDescription" readonly></textarea>
+      </mat-form-field>
+
+      <div class="card-actions">
+        <a class="disapprove-btn success" *ngIf="role !== 'EVENT_COORDINATOR'" (click)="openConfirmDialog()" mat-raised-button>Approve</a>
+        <a class="disapprove-btn" *ngIf="role !== 'EVENT_COORDINATOR'" [routerLink]="['/dashboard']" mat-raised-button color="warn">Disapprove</a>
+        <a [routerLink]="['/dashboard']" mat-raised-button color="primary">Back</a>
+      </div>
+    </mat-card>
+  </div>
+</div>

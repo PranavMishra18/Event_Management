@@ -1,0 +1,15 @@
+
+<app-navbar></app-navbar>
+
+
+<!-- <p *ngIf="role === 'ADMIN' " >Admin's aakhe only</p> -->
+
+<app-events *ngIf="role === 'EVENT_COORDINATOR'" [userId]="userId"></app-events>
+
+<app-dept-coord *ngIf="role === 'DEPARTMENT_COORDINATOR'" [userId]="userId"></app-dept-coord>
+
+<app-hod *ngIf="role === 'HOD'" [userId]="userId"></app-hod>
+
+<app-dean *ngIf="role === 'DEAN'" [userId]="userId"></app-dean>
+
+<app-iqac *ngIf="role === 'IQAC'" [userId]="userId"></app-iqac>
