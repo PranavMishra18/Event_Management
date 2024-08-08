@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+<h1 class="title">All Events</h1>
+
+<br>
+
+<a *ngIf="role === 'EVENT_COORDINATOR'" [routerLink]="['/event/create']" mat-raised-button class="firstbtn customclr">
+    Create Event <mat-icon>add</mat-icon></a>
+
+<a *ngIf="role !== 'EVENT_COORDINATOR'" [routerLink]="['/events/approved']" mat-raised-button class="firstbtn customclr">
+    Approved Events</a>
+
+<a *ngIf="role === 'EVENT_COORDINATOR'" [routerLink]="['/dashboard']" mat-raised-button class="customclr">
+    Your Event Status</a>
+
+<a *ngIf="role !== 'EVENT_COORDINATOR'" [routerLink]="['/dashboard']" mat-raised-button class="customclr">
+    Events Approval</a>
+
+<a [routerLink]="['/events/list']" routerLinkActive="active-link" mat-raised-button class="customclr customclr-active">All Events Status </a>
+
+<table class="table table-hover custom-table">
+    <thead>
+        <tr>
+            <th scope="col">S No.</th>
+            <th scope="col">Event Title</th>
+            <th scope="col">Club</th>
+            <th scope="col">Date</th>
+            <th scope="col">Venue</th>
+            <th scope="col">Time</th>
+            <th class="dpcoord" scope="col">Dept Coord.</th>
+            <th scope="col">HOD</th>
+            <th scope="col">Dean</th>
+            <th scope="col">IQAC</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let event of events; let i = index">
+            <th>{{ i + 1 }}.</th>
+            <td>{{ event.eventTitle }}</td>
+            <td>{{ event.clubName }}</td>
+            <td>{{ event.date }}</td>
+            <td>{{ event.venue }}</td>
+            <td>{{ event.time }}</td>
+            <td class="dpcoord">
+                <button *ngIf="event.departmentCoordinatorApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
+                <button *ngIf="!event.departmentCoordinatorApproval" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+            </td>
+            <td>
+                <button *ngIf="event.hodApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
+                <button *ngIf="!event.hodApproval" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+            </td>
+            <td>
+                <button *ngIf="event.deanApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
+                <button *ngIf="!event.deanApproval" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+            </td>
+            <td>
+                <button *ngIf="event.iqacApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
+                <button *ngIf="!event.iqacApproval" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+            </td>
+            <td>
+                <button mat-mini-fab class="mat-icon-button leftShift viewclr" (click)="viewEvent(event.id)" matTooltip="View Event"><mat-icon>visibility</mat-icon></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

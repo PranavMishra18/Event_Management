@@ -1,0 +1,36 @@
+<h1 class="title">Register</h1>
+
+<mat-card class="register-card">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="register-form">
+
+    
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput type="text" name="username" ngModel #username="ngModel" required>
+      <mat-error *ngIf="username.hasError('required')">Username is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" name="password" ngModel #password="ngModel" required>
+      <mat-error *ngIf="password.hasError('required')">Password is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Role</mat-label>
+      <mat-select name="role" ngModel #role="ngModel" required>
+        <mat-option value="EVENT_COORDINATOR">Event Coordinator</mat-option>
+        <mat-option value="DEPARTMENT_COORDINATOR">Department Coordinator</mat-option>
+        <mat-option value="HOD">HOD</mat-option>
+        <mat-option value="DEAN">Dean</mat-option>
+        <mat-option value="IQAC">IQAC</mat-option>
+        <mat-option value="ADMIN">Admin</mat-option>
+      </mat-select>
+      <mat-error *ngIf="role.hasError('required')">Role is required.</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="full-width">Register</button>
+
+  </form>
+</mat-card>
