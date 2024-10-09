@@ -9,6 +9,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+
 @Service
 public class AuthenticationService {
 
@@ -22,11 +25,17 @@ public class AuthenticationService {
     JwtService jwtService;
 
     @Autowired
+    EmailSenderService emailSenderService;
+
+    @Autowired
     AuthenticationManager authenticationManager;
+
+    private final ConcurrentHashMap<String, String> otpStore = new ConcurrentHashMap<>();
 
     public AuthenticationResponse register(User request){
         User user = new User();
         user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
 
@@ -42,17 +51,52 @@ public class AuthenticationService {
     public AuthenticationResponse authenticate(User request){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
+                        request.getEmail(),
                         request.getPassword()
                 )
         );
 
-        User user = userRepository.findByUsername(request.getUsername()).get();
+        User user = userRepository.findByEmail(request.getEmail()).get();
 
         String token = jwtService.generateToken(user);
 
         return new AuthenticationResponse(token);
     }
+
+    public void sendOtp(String email) {
+
+        String otp = String.valueOf(10000 + new Random().nextInt(90000));
+
+        otpStore.put(email, otp); // Store OTP associated with the email
+
+        // Send OTP to user's email
+        String emailBody = String.format(
+                "Hello %s,\n\n" +
+                        "A password reset request was sent for your account. " +
+                        "If you did not make this request, please ignore this email.\n\n" +
+                        "OTP code for resetting your password is: %s\n\n" +
+                        "Please enter this code in the application to proceed with the password reset.\n\n" +
+                        "If you have any questions or need further assistance, feel free to contact our support team.\n\n" +
+                        "Thank you,\n" +
+                        "The Event Management Team",
+                email, otp
+        );
+
+        emailSenderService.sendEmail(email, "Password Reset Request", emailBody);
+    }
+
+    public boolean verifyOtp(String email, String otp) {
+        String storedOtp = otpStore.get(email);
+        return storedOtp != null && storedOtp.equals(otp);
+    }
+
+    public void resetPassword(String email, String newPassword) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+        otpStore.remove(email); // Clear OTP after password reset
+    }
+
 
 
 }

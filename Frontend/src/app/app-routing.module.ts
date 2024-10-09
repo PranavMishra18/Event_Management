@@ -10,11 +10,17 @@ import { EventsListComponent } from './events/events-list/events-list.component'
 import { EditEventComponent } from './events/edit-event/edit-event.component';
 import { ViewEventComponent } from './events/view-event/view-event.component';
 import { ApprovedComponent } from './events/approved-events/approved/approved.component';
+import { ForgotPasswordComponent } from './login-register/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './login-register/reset-password/reset-password.component';
+import { VerifyOtpComponent } from './login-register/verify-otp/verify-otp.component';
 
 const routes: Routes = [
 
   {path : 'login',component:LoginComponent},
   {path : 'register',component:RegisterComponent},
+  {path : 'forgot-password',component:ForgotPasswordComponent},
+  {path : 'verify-otp',component:VerifyOtpComponent},
+  {path : 'reset-password',component:ResetPasswordComponent},
   {path : 'home',component:HomeComponent},
   {path : 'dashboard',component : DashboardComponent,canActivate:[AuthGuard]},
   {path : 'event/create',component:CreateEventComponent,canActivate:[AuthGuard]},

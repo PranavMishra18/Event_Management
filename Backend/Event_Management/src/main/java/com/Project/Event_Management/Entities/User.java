@@ -25,6 +25,8 @@ public class User implements UserDetails {
 
     String password;
 
+    String email;
+
     @Column(length = 150)
     @Enumerated(value = EnumType.STRING)
     Role role;
@@ -36,10 +38,11 @@ public class User implements UserDetails {
 
     }
 
-    public User(String username,String password, Role role) {
+    public User(String username,String password, Role role, String email) {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.email = email;
     }
 
     public List<Event> getEvents() {
@@ -68,6 +71,14 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -114,7 +125,9 @@ public class User implements UserDetails {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", role=" + role +
+                ", events=" + events +
                 '}';
     }
 }

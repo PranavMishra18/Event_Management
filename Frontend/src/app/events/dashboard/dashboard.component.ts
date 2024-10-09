@@ -10,7 +10,7 @@ import { AuthService } from '../../authService';
 export class DashboardComponent implements OnInit {
 
   userId : number | null= null;
-  username: string | null = '';
+  email: string | null = '';
   role: string | null = '';
 
   constructor(
@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
       const userDetails = this.authService.getUserDetails();
       if (userDetails) {
         this.userId = userDetails.userId;
-        this.username = userDetails.username;
+        this.email = userDetails.email;
         this.role = userDetails.role;
       }
     }

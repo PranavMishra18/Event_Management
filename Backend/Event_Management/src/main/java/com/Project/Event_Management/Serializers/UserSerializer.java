@@ -14,6 +14,7 @@ public class UserSerializer extends JsonSerializer<User> {
         jsonGenerator.writeNumberField("id", user.getId());
         jsonGenerator.writeStringField("username", user.getUsername());
         jsonGenerator.writeStringField("role", user.getRole().name());
+        jsonGenerator.writeStringField("email", user.getEmail());
         // Serialize event IDs
         jsonGenerator.writeArrayFieldStart("eventIds");
         user.getEvents().forEach(event -> {

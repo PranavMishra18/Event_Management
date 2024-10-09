@@ -24,10 +24,11 @@ export class RegisterComponent {
   onSubmit(f : NgForm){
 
     const username = f.value.username;
+    const email = f.value.email;
     const password = f.value.password;
     const role = f.value.role;
 
-    const user = new User(username,password,role);
+    const user = new User(username,email,password,role);
 
     this.authService.register(user).subscribe(data => {
       this.router.navigate(['/login']);
