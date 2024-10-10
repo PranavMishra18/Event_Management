@@ -20,7 +20,7 @@ public class Event {
     String coordinatorName;
 
     @ManyToOne
-            @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id")
     User coordinator;
 
     String clubName;

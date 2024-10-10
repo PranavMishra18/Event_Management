@@ -32,6 +32,9 @@ import { HodApprovedComponent } from './events/approved-events/hod-approved/hod-
 import { DeanApprovedComponent } from './events/approved-events/dean-approved/dean-approved.component';
 import { IqacApprovedComponent } from './events/approved-events/iqac-approved/iqac-approved.component';
 import { ApprovedComponent } from './events/approved-events/approved/approved.component';
+import { ForgotPasswordComponent } from './login-register/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './login-register/reset-password/reset-password.component';
+import { VerifyOtpComponent } from './login-register/verify-otp/verify-otp.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { ApprovedComponent } from './events/approved-events/approved/approved.co
     HodApprovedComponent,
     DeanApprovedComponent,
     IqacApprovedComponent,
-    ApprovedComponent
+    ApprovedComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    VerifyOtpComponent
   ],
   imports: [
     BrowserModule,

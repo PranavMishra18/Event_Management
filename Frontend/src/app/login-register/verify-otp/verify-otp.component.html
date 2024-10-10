@@ -1,0 +1,21 @@
+<h1 class="title">Verify OTP</h1>
+
+<mat-card class="verify-otp-card">
+  <form #f="ngForm" (ngSubmit)="onSubmitOtp(f)" class="verify-otp-form">
+
+    <mat-error *ngIf="error" class="general-error">{{ error }} <br></mat-error>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Enter OTP</mat-label>
+      <input matInput type="text" name="otp" ngModel #otp="ngModel" required>
+      <mat-error *ngIf="otp.hasError('required')">OTP is required.</mat-error>
+      <mat-error *ngIf="otpError">{{ otpError }}</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="full-width">Submit OTP</button>
+
+    <br>
+    <a [routerLink]="['/login']"><h4>Back to Login</h4></a>
+    
+  </form>
+</mat-card>

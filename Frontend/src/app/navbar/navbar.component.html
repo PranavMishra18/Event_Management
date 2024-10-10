@@ -10,8 +10,11 @@
         <a class="nav-link nav-text" href="#">About</a>
         <a class="nav-link nav-text" href="#">Clubs</a>
         <a [routerLink]="['/dashboard']" class="nav-link nav-text">Create Events</a>
+        <!-- <a class="nav-link nav-text" href="#">{{username}}</a> -->
+      </div>
+      <!-- Move the logout button to the right using ms-auto -->
+      <div class="navbar-nav ms-auto">
         <a (click)="logout()" class="nav-link nav-text pointer">Logout</a>
-        <a class="nav-link nav-text" href="#">{{username}}</a>
       </div>
     </div>
   </div>

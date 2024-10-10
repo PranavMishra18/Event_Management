@@ -11,6 +11,8 @@ export class AuthService {
   private baseUrl = 'http://localhost:8080'; 
   private tokenKey = 'authToken';
 
+  private email : string;
+
   constructor(
     private http: HttpClient, 
     private router: Router,
@@ -49,15 +51,36 @@ export class AuthService {
     return this.getToken() !== null;
   }
 
-  getUserDetails(): { userId: number, username: string, role: string } | null {
+  getUserDetails(): { userId: number, email: string, role: string } | null {
     const token = this.getToken();
     if (token) {
       const tokenPayload = JSON.parse(atob(token.split('.')[1]));
       return {
         userId: tokenPayload.userId,
-        username: tokenPayload.sub,
+        email: tokenPayload.sub,
         role: tokenPayload.role
       };
     }
   }
+
+  sendOtp(email: string): Observable<any> {
+    this.email = email;
+    return this.http.post(`${this.baseUrl}/forgot-password`, email);
+  }
+
+  getEmail() : string{
+    return this.email;
+  }
+
+  verifyOtp(email: string, otp: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/verify-otp`, { email, otp });
+  }
+
+  resetPassword(email: string, newPassword: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/reset-password`, { email, newPassword });
+  }
+
+
+
+
 }

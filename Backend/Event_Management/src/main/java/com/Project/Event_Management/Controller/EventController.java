@@ -33,7 +33,7 @@ public class EventController {
     @GetMapping("/events/{id}")
     public Event viewEvent(@PathVariable Long id){
 
-        return  eventService.getEvent(id);
+        return eventService.getEvent(id);
 
     }
 

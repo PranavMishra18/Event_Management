@@ -23,20 +23,20 @@ export class LoginComponent {
 
   onSubmit(f : NgForm){
 
-    const username = f.value.username;
+    const email = f.value.email;
     const password = f.value.password;
     
 
     
 
-    this.authService.login({username : username, password : password}).subscribe(response => {
+    this.authService.login({email : email, password : password}).subscribe(response => {
 
       this.authService.saveToken(response.token);
       this.router.navigate(['/dashboard']);
       
     },
     error => {
-      this.error = "Invalid username or password."
+      this.error = "Invalid email or password."
     })
 
     
