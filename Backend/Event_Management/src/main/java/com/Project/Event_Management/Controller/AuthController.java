@@ -1,5 +1,6 @@
 package com.Project.Event_Management.Controller;
 
+import com.Project.Event_Management.DTO.EmailRequest;
 import com.Project.Event_Management.DTO.ResetPasswordRequest;
 import com.Project.Event_Management.DTO.VerifyOtpRequest;
 import com.Project.Event_Management.Entities.AuthenticationResponse;
@@ -36,7 +37,8 @@ public class AuthController {
 
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<Void> forgotPassword(@RequestBody String email) {
+    public ResponseEntity<Void> forgotPassword(@RequestBody EmailRequest emailRequest) {
+        String email = emailRequest.getEmail();
         authenticationService.sendOtp(email);
         return ResponseEntity.ok().build();
     }

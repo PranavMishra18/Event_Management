@@ -67,7 +67,7 @@ public class AuthenticationService {
 
         String otp = String.valueOf(10000 + new Random().nextInt(90000));
 
-        otpStore.put(email, otp); // Store OTP associated with the email
+        otpStore.put(email, otp);
 
         // Send OTP to user's email
         String emailBody = String.format(
@@ -85,6 +85,9 @@ public class AuthenticationService {
         emailSenderService.sendEmail(email, "Password Reset Request", emailBody);
     }
 
+
+
+
     public boolean verifyOtp(String email, String otp) {
         String storedOtp = otpStore.get(email);
         return storedOtp != null && storedOtp.equals(otp);
@@ -94,7 +97,7 @@ public class AuthenticationService {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
-        otpStore.remove(email); // Clear OTP after password reset
+        otpStore.remove(email);
     }
 
 

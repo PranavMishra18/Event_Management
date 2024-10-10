@@ -70,7 +70,6 @@ import { VerifyOtpComponent } from './login-register/verify-otp/verify-otp.compo
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     MaterialModule,
   ],
   providers: [

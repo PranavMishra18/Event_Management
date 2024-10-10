@@ -23,11 +23,12 @@ public class JwtService {
         return extractClaim(token,Claims::getSubject);
     }
 
-    public boolean isValid(String token, UserDetails user){
-        String username = extractUsername(token);
-
-        return (username.equals(user.getUsername())) && !isTokenExpired(token);
+    public boolean isValid(String token, UserDetails user) {
+        String emailFromToken = extractUsername(token);
+        return (emailFromToken.equals(((User) user).getEmail())) && !isTokenExpired(token);
     }
+
+
 
     private boolean isTokenExpired(String token){
         return extractExpiration(token).before(new Date());
