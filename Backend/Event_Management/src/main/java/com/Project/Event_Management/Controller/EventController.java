@@ -30,6 +30,8 @@ public class EventController {
 
     }
 
+
+
     @GetMapping("/events/{id}")
     public Event viewEvent(@PathVariable Long id){
 

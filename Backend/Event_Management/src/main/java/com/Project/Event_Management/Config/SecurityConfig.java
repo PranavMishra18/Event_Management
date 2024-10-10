@@ -40,7 +40,7 @@ public class SecurityConfig {
                         req -> req.requestMatchers("/login/**","/register/**","/forgot-password/**","/reset-password/**","/verify-otp/**")
                                 .permitAll()
                                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                                .requestMatchers("/events/user/**").hasAuthority("EVENT_COORDINATOR")
+                                .requestMatchers("/users/**").hasAuthority("EVENT_COORDINATOR")
                                 .requestMatchers("/events/status").permitAll()
                                 .anyRequest()
                                 .authenticated()
