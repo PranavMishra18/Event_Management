@@ -75,4 +75,21 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    public String generatePasswordResetToken(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("otp_verified", true);
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(user.getEmail())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 15 * 60 * 1000)) // 15 minutes expiry
+                .signWith(getSigninKey())
+                .compact();
+    }
+
+    public boolean isPasswordResetTokenValid(String token) {
+        Claims claims = extractAllClaims(token);
+        return claims.get("otp_verified", Boolean.class) != null && claims.get("otp_verified", Boolean.class);
+    }
+
 }

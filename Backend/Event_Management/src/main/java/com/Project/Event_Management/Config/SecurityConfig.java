@@ -37,8 +37,10 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer :: disable)
                 .authorizeHttpRequests(
-                        req -> req.requestMatchers("/login/**","/register/**","/forgot-password/**","/reset-password/**","/verify-otp/**")
+                        req -> req.requestMatchers("/login/**","/register/**","/forgot-password/**","/verify-otp/**")
                                 .permitAll()
+                                .requestMatchers("/reset-password/**")
+                                .authenticated()
                                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                                 .requestMatchers("/users/**").hasAuthority("EVENT_COORDINATOR")
                                 .requestMatchers("/events/status").permitAll()
