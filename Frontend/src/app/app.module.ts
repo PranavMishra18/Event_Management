@@ -16,7 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { EventsComponent } from './events/events/events.component';
 import { AuthInterceptor } from './auth.interceptor';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './auth/auth.guard';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { EventsListComponent } from './events/events-list/events-list.component';
 import { DeptCoordComponent } from './events/authorities/dept-coord/dept-coord.component';

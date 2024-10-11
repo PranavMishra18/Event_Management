@@ -60,10 +60,10 @@ public class JwtService {
         claims.put("userId", user.getId());
 
         return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(user.getEmail())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000)) // 24 hours
+                .claims(claims)
+                .subject(user.getEmail())
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000)) // 24 hours
                 .signWith(getSigninKey())
                 .compact();
     }
@@ -79,10 +79,10 @@ public class JwtService {
         Map<String, Object> claims = new HashMap<>();
         claims.put("otp_verified", true);
         return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(user.getEmail())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 15 * 60 * 1000)) // 15 minutes expiry
+                .claims(claims)
+                .subject(user.getEmail())
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + 15 * 60 * 1000)) // 15 minutes expiry
                 .signWith(getSigninKey())
                 .compact();
     }
