@@ -3,7 +3,7 @@
 <mat-card class="verify-otp-card">
   <form #f="ngForm" (ngSubmit)="onSubmitOtp(f)" class="verify-otp-form">
 
-    <mat-error *ngIf="error" class="general-error">{{ error }} <br></mat-error>
+    <mat-error *ngIf="errorOccured" class="general-error"> Invalid OTP. Please try again. <br></mat-error>
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Enter OTP</mat-label>

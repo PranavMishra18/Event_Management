@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { AuthService } from '../../authService';
 
@@ -10,14 +9,24 @@ import { AuthService } from '../../authService';
 })
 export class ResetPasswordComponent {
   error: string | null = null;
+  passwordToken: string | null;
 
-  constructor(private authService : AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    // Retrieve the token from local storage
+    this.passwordToken = localStorage.getItem('otpToken');
+    
+    if (!this.passwordToken) {
+      this.error = 'Token not found. Please go through the OTP verification again.';
+      console.error(this.error); // Log error message
+      // Optionally, navigate back to verify OTP page
+      // this.router.navigate(['/verify-otp']);
+    }
+  }
 
   onSubmit(f: any): void {
-    // Extracting values from the form
-    const email = f.value.email;
-    const newPassword = f.value.newPassword;
-    const confirmPassword = f.value.confirmPassword;
+    const email = f.value.email; // Extracting email from the form
+    const newPassword = f.value.newPassword; // New password from the form
+    const confirmPassword = f.value.confirmPassword; // Confirm password from the form
 
     // Check if new password and confirm password match
     if (newPassword !== confirmPassword) {
@@ -25,17 +34,14 @@ export class ResetPasswordComponent {
       return;
     }
 
-    // Create the payload for the reset password request
-    
-
     // Call the AuthService to reset the password
-    this.authService.resetPassword(email,newPassword).subscribe(
+    this.authService.resetPassword(email, newPassword).subscribe(
       (response) => {
-        // Handle success response
+        console.log('Password reset successful:', response); // Log success message
         this.router.navigate(['/login']); // Redirect to login or wherever needed
       },
       (err) => {
-        // Handle error response
+        console.error('Error resetting password:', err); // Log error
         this.error = err.error.message || 'Something went wrong. Please try again.';
       }
     );
