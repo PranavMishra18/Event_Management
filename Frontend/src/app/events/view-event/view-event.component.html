@@ -18,8 +18,8 @@
       </mat-form-field>
 
       <div class="card-actions">
-        <a class="disapprove-btn success" *ngIf="role !== 'EVENT_COORDINATOR'" (click)="openConfirmDialog()" mat-raised-button>Approve</a>
-        <a class="disapprove-btn" *ngIf="role !== 'EVENT_COORDINATOR'" [routerLink]="['/dashboard']" mat-raised-button color="warn">Disapprove</a>
+        <a class="disapprove-btn success" *ngIf="role !== 'EVENT_COORDINATOR'" (click)="openApproveDialog('0ms','0ms',event.eventTitle)" mat-raised-button>Approve</a>
+        <a class="disapprove-btn" *ngIf="role !== 'EVENT_COORDINATOR'" (click)="openDisapproveDialog('0ms','0ms',event.eventTitle)" mat-raised-button color="warn">Disapprove</a>
         <a [routerLink]="['/dashboard']" mat-raised-button color="primary">Back</a>
       </div>
     </mat-card>

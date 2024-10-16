@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
   <div class="container-fluid">
-    <a class="navbar-brand nav-text" href="#">ShardaSync</a>
+    <a [routerLink]="['/home']" class="navbar-brand nav-text logo">ES</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,11 +10,10 @@
         <a class="nav-link nav-text" href="#">About</a>
         <a class="nav-link nav-text" href="#">Clubs</a>
         <a [routerLink]="['/dashboard']" class="nav-link nav-text">Create Events</a>
-        <!-- <a class="nav-link nav-text" href="#">{{username}}</a> -->
       </div>
-      <!-- Move the logout button to the right using ms-auto -->
-      <div class="navbar-nav ms-auto">
-        <a (click)="logout()" class="nav-link nav-text pointer">Logout</a>
+      <div *ngIf="email" class="navbar-nav ms-auto">
+        <span class="nav-link nav-text">{{email}}</span>
+        <a  (click)="logout()" class="nav-link nav-text pointer">Logout</a>
       </div>
     </div>
   </div>

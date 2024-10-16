@@ -1,0 +1,26 @@
+
+<ng-container *ngIf="data.type === 'disapprove'">
+
+    <h2 mat-dialog-title>Disapproving...</h2>
+    <mat-dialog-content>
+    <div class="loading-spinner">
+        <mat-spinner></mat-spinner>
+        <p>Disapproving event, please wait...</p>
+    </div>
+    </mat-dialog-content>
+
+</ng-container>
+
+<ng-container *ngIf="data.type === 'approve'">
+
+    <h2 mat-dialog-title>Approving......</h2>
+    <mat-dialog-content>
+    <div class="loading-spinner">
+        <mat-spinner></mat-spinner>
+        <p>Approving event, please wait...</p>
+    </div>
+    </mat-dialog-content>
+    
+</ng-container>
+
+

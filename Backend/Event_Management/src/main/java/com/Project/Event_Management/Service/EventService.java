@@ -39,15 +39,15 @@ public class EventService {
     }
 
     // Unconfirmed
-    public List<Event> getEventsByStatus(){
+    public List<Event> getUnapprovedEvents(){
 
-        return eventRepository.getEventsByStatus();
+        return eventRepository.getUnapprovedEvents();
 
     }
 
-    public List<Event> getConfirmedEvents(){
+    public List<Event> getApprovedEvents(){
 
-        return eventRepository.getConfirmedEvents();
+        return eventRepository.getApprovedEvents();
 
     }
 

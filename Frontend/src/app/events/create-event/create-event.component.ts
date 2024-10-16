@@ -37,53 +37,52 @@ export class CreateEventComponent implements OnInit {
       this.eventService.getUser(this.userId).subscribe(data => {
         this.user = data;
       })
-      
-
-
-
+    
   }
 
   onSubmit(f : NgForm){
 
-    const value = new Date(f.value.date);
-
+    
     const eventTitle = f.value.eventTitle;
     const coordinatorName = f.value.coordinatorName;
     const clubName = f.value.clubName;        
-    let formattedDate = this.formatDate(value);
-    const alternateDate = this.convertDateFormat(formattedDate);
+    const date : Date = f.value.date;
+    const formattedDate = date.toISOString().split('T')[0];
     const venue = f.value.venue;
     const time = f.value.time;
     const eventBudget = f.value.budget;
     const eventDescription = f.value.eventDescription;    
 
-    const event = new Event(eventTitle,coordinatorName,this.user,this.user.username,clubName,alternateDate,
+
+    const event = new Event(eventTitle,coordinatorName,this.user,this.user.username,clubName,formattedDate,
                             time,venue,eventBudget,eventDescription);
     
     this.eventService.saveEvent(event).subscribe(data => {
 
-      console.log('success');
+      console.log('formattedDate');
       this.router.navigate(['/dashboard']);
       
 
     })
     
+    console.log(date);
+  }
 
-  }
-      
-  formatDate(date: Date): string {
-    // Example format: YYYY-MM-DD
-    const year = date.getFullYear();
-    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Adding 1 to month as it's zero-based
-    const day = ('0' + date.getDate()).slice(-2);
-    return `${year}/${month}/${day}`;
-  }
+  // let formattedDate = this.formatDate(value);
+  // const alternateDate = this.convertDateFormat(formattedDate);
+  // formatDate(date: Date): string {
+  //   // Example format: YYYY-MM-DD
+  //   const year = date.getFullYear();
+  //   const month = ('0' + (date.getMonth() + 1)).slice(-2); // Adding 1 to month as it's zero-based
+  //   const day = ('0' + date.getDate()).slice(-2);
+  //   return `${year}/${month}/${day}`;
+  // }
   
-  convertDateFormat(dateString: string): string {
-    // Assuming dateString is in YYYY-MM-DD format
-    const parts = dateString.split('/');
-    return `${parts[2]}/${parts[1]}/${parts[0]}`; // Assuming the desired format is DD/MM/YYYY
-  }
+  // convertDateFormat(dateString: string): string {
+  //   // Assuming dateString is in YYYY-MM-DD format
+  //   const parts = dateString.split('/');
+  //   return `${parts[2]}/${parts[1]}/${parts[0]}`; // Assuming the desired format is DD/MM/YYYY
+  // }
   
 
 

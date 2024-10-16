@@ -13,11 +13,11 @@ public interface EventRepository extends JpaRepository<Event,Long> {
     @Query("SELECT e FROM Event e WHERE e.coordinator.id = :userId")
      List<Event> getEventsByUserId(Long userId);
 
-    @Query("SELECT e FROM Event e WHERE e.status = false")
-    List<Event> getEventsByStatus();
+    @Query("SELECT e FROM Event e WHERE e.approved = false")
+    List<Event> getUnapprovedEvents();
 
-    @Query("SELECT e FROM Event e WHERE e.status = true")
-    List<Event> getConfirmedEvents();
+    @Query("SELECT e FROM Event e WHERE e.approved = true")
+    List<Event> getApprovedEvents();
 
     @Query("SELECT e FROM Event e WHERE e.departmentCoordinatorApproval = true")
     List<Event> confirmedByDC();

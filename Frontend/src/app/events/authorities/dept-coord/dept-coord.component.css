@@ -110,3 +110,7 @@ h1{
 .check-icon {
     color: green; /* Change check icon color to green */
 }
+
+tr:hover{
+    cursor: pointer;
+}

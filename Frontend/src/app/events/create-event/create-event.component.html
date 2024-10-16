@@ -1,92 +1,71 @@
 <app-navbar></app-navbar>
 
-<h1 class="title"> Create Event </h1>
-    
-<a [routerLink]="['/event/create']" mat-raised-button class="customclr firstbtn customclr-active">
-        Create Event <mat-icon>add</mat-icon></a>    
-<a [routerLink]="['/dashboard']" mat-raised-button class="customclr">
-        Your Event Status</a>
-<a [routerLink]="['/events/list']" mat-raised-button class="customclr">All Events Status </a>        
+<h1 class="title">Create Event</h1>
 
+<div class="button-group">
+    <a [routerLink]="['/event/create']" mat-raised-button class="customclr firstbtn customclr-active">
+        Create Event <mat-icon>add</mat-icon>
+    </a>    
+    <a [routerLink]="['/dashboard']" mat-raised-button class="customclr">Your Event Status</a>
+    <a [routerLink]="['/events/list']" mat-raised-button class="customclr">All Events Status</a>        
+</div>
 
-    
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-
     <h3 class="sub-title">Event Form</h3>
-    
-        <mat-form-field>
-            <mat-label>Event Title</mat-label>
-            <input type="text" name="eventTitle" ngModel #eventTitle="ngModel" matInput required>
-            <mat-error *ngIf="eventTitle.hasError('required')">Field cannot be empty.</mat-error>
-        </mat-form-field>
-    
-        <br>
-    
-        <mat-form-field>
-            <mat-label>Coordinator Name</mat-label>
-            <input type="text" name="coordinatorName" ngModel #coordinatorName="ngModel" matInput required>
-            <mat-error *ngIf="coordinatorName.hasError('required')">Field cannot be empty.</mat-error>            
-        </mat-form-field>
-    
-        <br>
-    
-        <mat-form-field>
-            <mat-label>Club Name</mat-label>
-            <input type="text" name="clubName" ngModel #clubName="ngModel" matInput required>
-            <mat-error *ngIf="clubName.hasError('required')">Field cannot be empty.</mat-error>            
-        </mat-form-field>
 
-        <br>
+    <mat-form-field>
+        <mat-label>Event Title</mat-label>
+        <input type="text" name="eventTitle" ngModel #eventTitle="ngModel" matInput required>
+        <mat-error *ngIf="eventTitle.hasError('required')">Field cannot be empty.</mat-error>
+    </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="DD-MM-YYYY" name="date" ngModel #date="ngModel">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+    <mat-form-field>
+        <mat-label>Coordinator Name</mat-label>
+        <input type="text" name="coordinatorName" ngModel #coordinatorName="ngModel" matInput required>
+        <mat-error *ngIf="coordinatorName.hasError('required')">Field cannot be empty.</mat-error>            
+    </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Venue</mat-label>
-            <input type="text" name="venue" ngModel #venue="ngModel" matInput required>
-            <mat-error *ngIf="venue.hasError('required')">Field cannot be empty.</mat-error>            
-        </mat-form-field>
+    <mat-form-field>
+        <mat-label>Club Name</mat-label>
+        <input type="text" name="clubName" ngModel #clubName="ngModel" matInput required>
+        <mat-error *ngIf="clubName.hasError('required')">Field cannot be empty.</mat-error>            
+    </mat-form-field>
 
-        <br>
+    <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="DD-MM-YYYY" name="date" ngModel #date="ngModel">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
+    <mat-form-field>
+        <mat-label>Venue</mat-label>
+        <input type="text" name="venue" ngModel #venue="ngModel" matInput required>
+        <mat-error *ngIf="venue.hasError('required')">Field cannot be empty.</mat-error>            
+    </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Time</mat-label>
-            <input type="text" name="time" ngModel #time="ngModel" matInput required>
-            <mat-error *ngIf="time.hasError('required')">Field cannot be empty.</mat-error>            
-        </mat-form-field>
+    <mat-form-field>
+        <mat-label>Time</mat-label>
+        <input type="text" name="time" ngModel #time="ngModel" matInput required>
+        <mat-error *ngIf="time.hasError('required')">Field cannot be empty.</mat-error>            
+    </mat-form-field>
 
-        <br>
+    <mat-form-field>
+        <mat-label>Budget</mat-label>
+        <input type="text" name="budget" ngModel #budget="ngModel" matInput required>
+        <mat-error *ngIf="budget.hasError('required')">Field cannot be empty.</mat-error>            
+    </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Budget</mat-label>
-            <input type="text" name="budget" ngModel #budget="ngModel" matInput required>
-            <mat-error *ngIf="budget.hasError('required')">Field cannot be empty.</mat-error>            
-        </mat-form-field>
+    <mat-form-field class="desc">
+        <mat-label>Event Description</mat-label>
+        <mat-hint>Post useful information like WhatsApp group link, contact information, etc. here</mat-hint>
+        <textarea matInput name="eventDescription" ngModel #eventDescription="ngModel" required></textarea>
+        <mat-error *ngIf="eventDescription.hasError('required')">Field cannot be empty.</mat-error>
+    </mat-form-field>
 
-        <mat-form-field class="full-width desc">
-            <mat-label>Event Description</mat-label>
-            <mat-hint>Post useful information like whatsapp group link, contact information, etc. here</mat-hint>
-            <textarea matInput name="eventDescription" ngModel #eventDescription="ngModel" required></textarea>
-            <mat-error *ngIf="eventDescription.hasError('required')">Field cannot be empty.</mat-error>
-          </mat-form-field>
-
-
-            
-        <br>
-        <br>
-          
-          <button type="submit" mat-raised-button color="primary" class="success">Submit</button>
-          &nbsp;
-          <a [routerLink]="['/dashboard']"  mat-raised-button color="warn">Back</a>
-    </form>
-    
-    <br>
-    
-    
-    
-    
+    <div class="button-container">
+        
+    </div>
+    <button type="submit" mat-raised-button color="primary" class="success">Submit</button>
+    <a [routerLink]="['/dashboard']" mat-raised-button color="warn">Back</a>
+</form>

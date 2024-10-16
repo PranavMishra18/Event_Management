@@ -48,15 +48,15 @@ public class EventController {
 
     }
 
-    @GetMapping("/events/status")
-    public List<Event> getEventsByStatus(){
-        return eventService.getEventsByStatus();
+    @GetMapping("/events/unconfirmed")
+    public List<Event> getEventsByUnconfirmed(){
+        return eventService.getUnapprovedEvents();
     }
 
     @GetMapping("/events/confirmed")
     public List<Event> getConfirmedEvents(){
 
-        return eventService.getConfirmedEvents();
+        return eventService.getApprovedEvents();
 
     }
 
@@ -141,11 +141,12 @@ public class EventController {
         oldEvent.setEventDescription(newEvent.getEventDescription());
 
         return eventService.saveEvent(oldEvent);
+    }
 
-
-
-
-
+    @DeleteMapping("/events/delete/{id}")
+    public void deleteEvent(@PathVariable Long id){
+        System.out.println("did I run?");
+        eventService.deleteEvent(id);
     }
 
 
@@ -169,6 +170,11 @@ public class EventController {
 
         Event event = eventService.getEvent(id);
         event.setDepartmentCoordinatorApproval(true);
+
+        emailSenderService.sendEmail(event.getCoordinator().getEmail(),"Event approved by Department Coordinator",
+                "Event '" + event.getEventTitle() + "' has been " +
+                "approved by the Department Coordinator.");
+
         return eventService.saveEvent(event);
     }
 
@@ -177,6 +183,11 @@ public class EventController {
 
         Event event = eventService.getEvent(id);
         event.setHodApproval(true);
+
+        emailSenderService.sendEmail(event.getCoordinator().getEmail(),"Event approved by HOD",
+                "Event '" + event.getEventTitle() + "' has been " +
+                        "approved by the HOD.");
+
         return eventService.saveEvent(event);
     }
 
@@ -185,6 +196,10 @@ public class EventController {
 
         Event event = eventService.getEvent(id);
         event.setDeanApproval(true);
+
+        emailSenderService.sendEmail(event.getCoordinator().getEmail(),"Event approved by Dean",
+                "Event '" + event.getEventTitle() + "' has been " +
+                        "approved by the Dean.");
         return eventService.saveEvent(event);
     }
 
@@ -193,55 +208,66 @@ public class EventController {
 
         Event event = eventService.getEvent(id);
         event.setIqacApproval(true);
-        event.setStatus(true);
+        event.setApproved(true);
+        event.setDisapproved(false);
+
+        emailSenderService.sendEmail(event.getCoordinator().getEmail(),"Event approved by IQAC",
+                "Event '" + event.getEventTitle() + "' has been " +
+                        "approved by the IQAC.");
         return eventService.saveEvent(event);
     }
 
 
     @PutMapping("/event/dc/disapproves/{id}")
-    public Event dcDisapproves(@PathVariable Long id){
+    public Event dcDisapproves(@PathVariable Long id, @RequestParam String eventDisapprovalReason){
 
         Event event = eventService.getEvent(id);
         event.setDepartmentCoordinatorApproval(false);
+        event.setApproved(false);
+        event.setDisapproved(true);
 
-        emailSenderService.sendEmail(event.getEmail(),"Event disapproved...","Event '" + event.getEventTitle() + "' has been " +
-                "disapproved by the Department Coordinator for the reason(s) :- \n \n " + event.getEventDisapprovedReason());
+        emailSenderService.sendEmail(event.getCoordinator().getEmail(),"Event disapproved...","Event '" + event.getEventTitle() + "' has been " +
+                "disapproved by the Department Coordinator for the reason(s) :- \n \n " + eventDisapprovalReason);
 
         return eventService.saveEvent(event);
     }
 
     @PutMapping("/event/hod/disapproves/{id}")
-    public Event hodDisapproves(@PathVariable Long id){
+    public Event hodDisapproves(@PathVariable Long id,@RequestParam String eventDisapprovalReason){
 
         Event event = eventService.getEvent(id);
         event.setHodApproval(false);
+        event.setApproved(false);
+        event.setDisapproved(true);
 
-        emailSenderService.sendEmail(event.getEmail(),"Event disapproved...","Event '" + event.getEventTitle() + "' has been " +
-                "disapproved by the HOD for the reason(s) :- \n \n " + event.getEventDisapprovedReason());
+        emailSenderService.sendEmail(event.getCoordinator().getEmail(),"Event disapproved...","Event '" + event.getEventTitle() + "' has been " +
+                "disapproved by the HOD for the reason(s) :- \n \n " + eventDisapprovalReason);
 
         return eventService.saveEvent(event);
     }
 
     @PutMapping("/event/dean/disapproves/{id}")
-    public Event deanDisapproves(@PathVariable Long id){
+    public Event deanDisapproves(@PathVariable Long id,@RequestParam String eventDisapprovalReason){
 
         Event event = eventService.getEvent(id);
-        event.setDeanApproval(false);
+        event.setApproved(false);
+        event.setDisapproved(true);
 
-        emailSenderService.sendEmail(event.getEmail(),"Event disapproved...","Event '" + event.getEventTitle() + "' has been " +
-                "disapproved by the Dean for the reason(s) :- \n \n " + event.getEventDisapprovedReason());
+        emailSenderService.sendEmail(event.getCoordinator().getEmail(),"Event disapproved...","Event '" + event.getEventTitle() + "' has been " +
+                "disapproved by the Dean for the reason(s) :- \n \n " + eventDisapprovalReason);
 
         return eventService.saveEvent(event);
     }
 
     @PutMapping("/event/iqac/disapproves/{id}")
-    public Event iqacDisapproves(@PathVariable Long id){
+    public Event iqacDisapproves(@PathVariable Long id,@RequestParam String eventDisapprovalReason){
 
         Event event = eventService.getEvent(id);
-        event.setIqacApproval(false);
+        event.setApproved(false);
+        event.setDisapproved(true);
 
-        emailSenderService.sendEmail(event.getEmail(),"Event disapproved...","Event '" + event.getEventTitle() + "' has been " +
-                "disapproved by the IQAC for the reason(s) :- \n \n " + event.getEventDisapprovedReason());
+        emailSenderService.sendEmail(event.getCoordinator().getEmail(),"Event disapproved...","Event '" + event.getEventTitle() + "' has been " +
+                "disapproved by the IQAC for the reason(s) :- \n \n " + eventDisapprovalReason);
 
         return eventService.saveEvent(event);
     }

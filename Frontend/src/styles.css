@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      display: block;
+      box-sizing: border-box;
+      background: linear-gradient(90deg, 
+          rgba(248, 248, 255, 1) 55%, 
+          rgba(216, 236, 251, 0.2) 65%, 
+          rgba(224, 246, 242, 0.15) 75%, 
+          rgba(230, 230, 255, 0.25) 85%, 
+          rgba(240, 240, 255, 0.3) 95%);        
+      color: #333;
+      overflow-x: hidden;
+      height: 100vh;
+      margin: 0; 
+ }

@@ -85,7 +85,7 @@ button[type="submit"] {
     margin-right: 25px;
     padding: 12px;
     font-size: 1.1em;
-    background-color: #4CAF50;
+    background-color:#f44336;
     color: white;
     border: none;
     border-radius: 4px;
@@ -100,7 +100,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #be1d11;
 }
 
 a[mat-raised-button] {
@@ -115,17 +115,29 @@ a[mat-raised-button][color="warn"] {
 }
 
 /* Description field */
+/* Description field */
+/* Description field */
 .desc {
-    height: 150px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch; /* Ensure it stretches the content */
 }
 
-textarea {
+/* Ensure textarea takes the full height */
+.text-area {
+    flex-grow: 1; /* Allow textarea to grow */
+    min-height: 100%; /* Ensure full height */
+    height: 100%;
     background-color: #eef3f9; /* Muted light blue */
     resize: none;
     padding: 10px;
     font-size: 1em;
     border-radius: 6px;
+    box-sizing: border-box; /* Ensure padding doesn't affect height */
 }
+
+
 
 /* Adjust font and spacing for better readability */
 h1, h3 {

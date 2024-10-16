@@ -14,6 +14,8 @@ import { ForgotPasswordComponent } from './login-register/forgot-password/forgot
 import { ResetPasswordComponent } from './login-register/reset-password/reset-password.component';
 import { VerifyOtpComponent } from './login-register/verify-otp/verify-otp.component';
 import { OtpGuard } from './auth/otp.guard';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { DisapprovedReasonComponent } from './events/disapproved-reason/disapproved-reason.component';
 
 const routes: Routes = [
 
@@ -22,11 +24,13 @@ const routes: Routes = [
   {path : 'forgot-password',component:ForgotPasswordComponent},
   {path : 'verify-otp',component:VerifyOtpComponent},
   {path : 'reset-password',component:ResetPasswordComponent,canActivate:[OtpGuard]},
+  {path : 'welcome',component:LandingPageComponent},
   {path : 'home',component:HomeComponent},
   {path : 'dashboard',component : DashboardComponent,canActivate:[AuthGuard]},
   {path : 'event/create',component:CreateEventComponent,canActivate:[AuthGuard]},
   {path : 'event/edit/:id',component:EditEventComponent,canActivate:[AuthGuard]},
   {path : 'event/view/:id',component: ViewEventComponent, canActivate:[AuthGuard]},
+  {path : 'event/disapproveReason/:id',component:DisapprovedReasonComponent,canActivate:[AuthGuard]},
   {path: 'events/approved',component:ApprovedComponent,canActivate:[AuthGuard]},
   {path : 'events/list',component:EventsListComponent}
 
