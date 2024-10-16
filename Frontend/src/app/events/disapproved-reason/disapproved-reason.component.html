@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+
+<h1 class="title">Disapproval Form</h1>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <mat-form-field class="desc">
+        <mat-label>Reason for disapproving...</mat-label>
+        <mat-hint>Please explain why you are disapproving this event.</mat-hint>
+        <textarea class="text-area" matInput name="eventDisapprovalReason" ngModel #eventDisapprovalReason="ngModel" required></textarea>
+        <mat-error *ngIf="eventDisapprovalReason.hasError('required')">Field cannot be empty.</mat-error>
+    </mat-form-field>
+
+    <div class="button-container"></div>
+    <button type="submit" mat-raised-button color="primary" class="warn">Disapprove</button>
+    
+    <a (click)="goBack(eventId)" mat-raised-button color="primary">Back</a>
+</form>

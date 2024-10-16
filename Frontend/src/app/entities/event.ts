@@ -17,7 +17,8 @@ export class Event{
     deanApproval : boolean;
     hodApproval : boolean;
     iqacApproval : boolean;
-    status : boolean;
+    approved : boolean;
+    disapproved : boolean;
     completed : boolean;
 
     constructor(eventTitle : string, coordinatorName : string,coordinator : User,email : string, clubName : string, date : string, time : string, venue : string,
@@ -37,7 +38,8 @@ export class Event{
             this.deanApproval = false;
             this.hodApproval = false;
             this.iqacApproval = false;
-            this.status = false;
+            this.approved = false;
+            this.disapproved = false;
             this.completed = false;
 
     }

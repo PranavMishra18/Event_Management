@@ -1,6 +1,7 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Event } from "./entities/event";
+import { log } from "console";
 
 @Injectable({
     providedIn : 'root'
@@ -65,7 +66,7 @@ export class EventService{
 
     getAllUnconfirmedEvents(){
 
-        return this.http.get<Event[]>(`${this.baseUrl}/events/status`);
+        return this.http.get<Event[]>(`${this.baseUrl}/events/unconfirmed`);
 
     }
 
@@ -83,6 +84,14 @@ export class EventService{
 
         return this.http.put(`${this.baseUrl}/events/update/${eventId}`,event);
 
+    }
+
+    deleteEvent(eventId : number){
+        
+        console.log(`Id to delete is :- ${eventId}`);
+        
+        
+        return this.http.delete(`${this.baseUrl}/events/delete/${eventId}`)
     }
 
     getUser(id : number){
@@ -115,27 +124,34 @@ export class EventService{
 
     }
 
-    departmentCoordinatorDisapproves(eventId :number){
+    departmentCoordinatorDisapproves(eventId: number, eventDisapprovalReason: string) {
+        const params = new HttpParams().set('eventDisapprovalReason', eventDisapprovalReason);
+        
+        return this.http.put(`${this.baseUrl}/event/dc/disapproves/${eventId}`, null, { params });
+    }
+    
 
-        return this.http.put(`${this.baseUrl}/event/dc/disapproves/${eventId}`,null);
+    hodDisapproves(eventId :number, eventDisapprovalReason: string){
+
+        const params = new HttpParams().set('eventDisapprovalReason', eventDisapprovalReason);
+
+        return this.http.put(`${this.baseUrl}/event/hod/disapproves/${eventId}`,null, {params});
 
     }
 
-    hodDisapproves(eventId :number){
+    deanDisapproves(eventId :number, eventDisapprovalReason: string){
 
-        return this.http.put(`${this.baseUrl}/event/dc/disapproves/${eventId}`,null);
+        const params = new HttpParams().set('eventDisapprovalReason', eventDisapprovalReason);
 
-    }
-
-    deanDisapproves(eventId :number){
-
-        return this.http.put(`${this.baseUrl}/event/dc/disapproves/${eventId}`,null);
+        return this.http.put(`${this.baseUrl}/event/dean/disapproves/${eventId}`,null, {params});
 
     }
 
-    iqacDisapproves(eventId :number){
+    iqacDisapproves(eventId :number, eventDisapprovalReason: string){
 
-        return this.http.put(`${this.baseUrl}/event/dc/disapproves/${eventId}`,null);
+        const params = new HttpParams().set('eventDisapprovalReason', eventDisapprovalReason);
+
+        return this.http.put(`${this.baseUrl}/event/iqac/disapproves/${eventId}`,null, {params});
 
     }
 

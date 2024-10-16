@@ -26,7 +26,7 @@ import { IqacComponent } from './events/authorities/iqac/iqac.component';
 import { EditEventComponent } from './events/edit-event/edit-event.component';
 import { ViewEventComponent } from './events/view-event/view-event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ApproveDialogComponent } from './dialogs/approve-dialog/approve-dialog.component';
 import { DcApprovedComponent } from './events/approved-events/dc-approved/dc-approved.component';
 import { HodApprovedComponent } from './events/approved-events/hod-approved/hod-approved.component';
 import { DeanApprovedComponent } from './events/approved-events/dean-approved/dean-approved.component';
@@ -35,6 +35,11 @@ import { ApprovedComponent } from './events/approved-events/approved/approved.co
 import { ForgotPasswordComponent } from './login-register/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './login-register/reset-password/reset-password.component';
 import { VerifyOtpComponent } from './login-register/verify-otp/verify-otp.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { DisapproveDialogComponent } from './dialogs/disapprove-dialog/disapprove-dialog.component';
+import { DeleteEventDialogComponent } from './dialogs/delete-event-dialog/delete-event-dialog.component';
+import { LoadingDialogComponent } from './dialogs/loading-dialog/loading-dialog.component';
+import { DisapprovedReasonComponent } from './events/disapproved-reason/disapproved-reason.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +58,7 @@ import { VerifyOtpComponent } from './login-register/verify-otp/verify-otp.compo
     IqacComponent,
     EditEventComponent,
     ViewEventComponent,
-    ConfirmDialogComponent,
+    ApproveDialogComponent,
     DcApprovedComponent,
     HodApprovedComponent,
     DeanApprovedComponent,
@@ -61,7 +66,12 @@ import { VerifyOtpComponent } from './login-register/verify-otp/verify-otp.compo
     ApprovedComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    VerifyOtpComponent
+    VerifyOtpComponent,
+    LandingPageComponent,
+    DisapproveDialogComponent,
+    DeleteEventDialogComponent,
+    LoadingDialogComponent,
+    DisapprovedReasonComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let event of events; let i = index">
+        <tr (click)="viewEvent(event.id)" *ngFor="let event of events; let i = index">
             <th>{{ i + 1 }}.</th>
             <td>{{ event.eventTitle }}</td>
             <td>{{ event.clubName }}</td>
@@ -31,19 +31,23 @@
             <td>{{ event.time }}</td>
             <td class="dpcoord">
                 <button *ngIf="event.departmentCoordinatorApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
-                <button *ngIf="!event.departmentCoordinatorApproval" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.departmentCoordinatorApproval && event.disapproved" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.departmentCoordinatorApproval && !event.disapproved" mat-icon-button class="mat-icon-button large-icon "  matTooltip="Not Viewed"><mat-icon>remove_circle</mat-icon></button>
             </td>
             <td>
                 <button *ngIf="event.hodApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
-                <button *ngIf="!event.hodApproval" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.hodApproval && event.disapproved" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.hodApproval && !event.disapproved" mat-icon-button class="mat-icon-button large-icon "  matTooltip="Not Viewed"><mat-icon>remove_circle</mat-icon></button>
             </td>
             <td>
                 <button *ngIf="event.deanApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
-                <button *ngIf="!event.deanApproval" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.deanApproval && event.disapproved" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.deanApproval && !event.disapproved" mat-icon-button class="mat-icon-button large-icon "  matTooltip="Not Viewed"><mat-icon>remove_circle</mat-icon></button>
             </td>
             <td>
                 <button *ngIf="event.iqacApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
-                <button *ngIf="!event.iqacApproval" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.iqacApproval && event.disapproved" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.iqacApproval && !event.disapproved" mat-icon-button class="mat-icon-button large-icon "  matTooltip="Not Viewed"><mat-icon>remove_circle</mat-icon></button>
             </td>
             <td>
                 

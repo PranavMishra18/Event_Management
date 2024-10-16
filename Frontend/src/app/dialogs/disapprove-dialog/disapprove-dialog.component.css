@@ -1,0 +1,127 @@
+/* Main Dialog Styling */
+.custom-dialog-container {
+    background-color: #fff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important; /* Softer shadow */
+    padding: 24px !important;
+    max-width: 400px !important;
+    transition: transform 0.4s ease, opacity 0.4s ease !important; /* Smooth transitions */
+    font-family: 'Roboto', sans-serif !important;
+    animation: fadeIn 0.3s ease-out !important;
+    position: relative;
+    text-align: center !important; /* Ensures everything centers inside */
+  }
+  
+  /* Close Button Styling */
+  .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #f44336 !important; /* Red background */
+    color: white !important; /* White 'X' */
+    border: none;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .close-button:hover {
+    background-color: #d32f2f !important; /* Darker red on hover */
+  }
+  
+  .custom-dialog-title {
+    font-size: 22px !important;
+    color: #3f51b5 !important; /* Primary blue color */
+    font-weight: 600 !important;
+    margin-top: 16px;
+    padding-top: 20px;
+    margin-bottom: 12px !important;
+    margin-left: 5px;
+    letter-spacing: 1.2px !important;
+    text-align: center;
+  }
+  
+  /* Content Styling */
+  .custom-dialog-content {
+    font-size: 16px !important;
+    color: #444 !important;
+    text-align: center !important;
+    line-height: 1.5 !important;
+    margin-bottom: 20px !important;
+    margin-top: 25px;
+  }
+  
+  /* Button Styles */
+  .action-button {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    padding: 10px 24px !important;
+    border-radius: 20px !important;
+    margin: 8px !important;
+    transition: all 0.3s ease-in-out !important;
+    letter-spacing: 0.8px !important;
+  }
+  
+  .approve {
+    background-color: #4caf50 !important;
+    color: white !important;
+  }
+  
+  .approve:hover {
+    background-color: #45a247 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .disapprove {
+    background-color: #f44336 !important;
+    color: white !important;
+  }
+  
+  .disapprove:hover {
+    background-color: #e53935 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .cancel {
+    background-color: #6b6565 !important;
+    color: white !important;
+  }
+  
+  .cancel:hover {
+    background-color: #4e4747 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Centered Actions */
+  .custom-dialog-actions {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 12px !important;
+  }
+  
+  /* Background Overlay Fix */
+  .cdk-overlay-backdrop {
+    background: rgba(0, 0, 0, 0.7) !important; /* Ensures dark backdrop */
+  }
+  
+  /* Animations for smoother transitions */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  

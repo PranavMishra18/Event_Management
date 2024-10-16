@@ -5,8 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../../authService';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { ApproveDialogComponent } from '../../dialogs/approve-dialog/approve-dialog.component';
 import { log } from 'node:console';
+import { DisapproveDialogComponent } from '../../dialogs/disapprove-dialog/disapprove-dialog.component';
+import { LoadingDialogComponent } from '../../dialogs/loading-dialog/loading-dialog.component';
 
 @Component({
   selector: 'app-view-event',
@@ -26,7 +28,6 @@ export class ViewEventComponent implements OnInit {
       private dialog : MatDialog){
 
     }
-
 
     ngOnInit(): void {
 
@@ -54,63 +55,74 @@ export class ViewEventComponent implements OnInit {
         });
       }
 
-      openConfirmDialog(): void {
-        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-          width: '400px',
-          panelClass: 'custom-dialog-container'
+    openApproveDialog(enterAnimationDuration: string, exitAnimationDuration: string,name : string): void {
+        const dialogRef = this.dialog.open(ApproveDialogComponent, {
+          width: '350px', 
+          enterAnimationDuration: '150ms', 
+          exitAnimationDuration: '100ms', 
+          data: { name }
         });
     
         dialogRef.afterClosed().subscribe(result => {
-          if (result) {
-            
-            this.approveEvent();
-          }
-        });
-      }
     
-      approveEvent(): void {
+          if(result === 'approve'){
+            this.openLoadingDialog("approve");
+          } 
+        })
+    }
+
+    openDisapproveDialog(enterAnimationDuration: string, exitAnimationDuration: string,name : string): void {
+        const dialogRef = this.dialog.open(DisapproveDialogComponent, {
+          width: '350px', 
+          enterAnimationDuration: '150ms', 
+          exitAnimationDuration: '100ms', 
+          data: { name }
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+    
+          if(result === 'disapprove'){
+            this.router.navigate([`event/disapproveReason/${this.eventId}`]);
+            // ^ go to disapprove reason component, where we will verify authority disapproving the event.
+          } 
+        })
+    }
+
+    openLoadingDialog(type : string): void {
+      const loadingDialogRef = this.dialog.open(LoadingDialogComponent, {
+          disableClose: true,
+          data : {type} 
+      });
+
+      if(type === 'approve'){
+        this.approveEvent().then(() => {
+          loadingDialogRef.close();
+      });
+      }   
+  }
+
+  async approveEvent(): Promise<void> {
+    return new Promise((resolve) => {
         
-        
+        let approvalObservable;
 
-        if(this.role === 'DEPARTMENT_COORDINATOR'){
-          
-          this.eventService.departmentCoordinatorApproves(this.eventId).subscribe(data => {
-            console.log(data);   
-            location.reload();         
-          })
-
-          
-          
-          
-        } else if(this.role === 'HOD'){
-
-           this.eventService.hodApproves(this.eventId).subscribe(data => {
-            console.log(data);
-            location.reload();
-           })
-
-                     
-
-        } else if(this.role === 'DEAN'){
-
-          this.eventService.deanApproves(this.eventId).subscribe(data => {
-            console.log(data);            
-            location.reload();
-          })
-
-          
-        } else if(this.role === 'IQAC'){
-
-          this.eventService.iqacApproves(this.eventId).subscribe(data => {
-            console.log(data);            
-            location.reload();
-          })
-
-          
+        if (this.role === 'DEPARTMENT_COORDINATOR') {
+            approvalObservable = this.eventService.departmentCoordinatorApproves(this.eventId);
+        } else if (this.role === 'HOD') {
+            approvalObservable = this.eventService.hodApproves(this.eventId);
+        } else if (this.role === 'DEAN') {
+            approvalObservable = this.eventService.deanApproves(this.eventId);
+        } else if (this.role === 'IQAC') {
+            approvalObservable = this.eventService.iqacApproves(this.eventId);
         }
 
-        this.goToDashboard();        
-      }
+        approvalObservable.subscribe(data => {
+            console.log(data);
+            this.goToDashboard();
+            resolve(); 
+        });
+    });
+  }
 
   goToDashboard(){
     this.router.navigate(['/dashboard']);
