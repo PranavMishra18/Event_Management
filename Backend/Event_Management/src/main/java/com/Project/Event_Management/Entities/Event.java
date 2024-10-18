@@ -1,6 +1,7 @@
 package com.Project.Event_Management.Entities;
 
 import com.Project.Event_Management.Serializers.EventSerializer;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.*;
@@ -32,11 +33,26 @@ public class Event {
     private String time;
     private String venue;
     private String eventBudget;
+
+    @Column(length = 2000)
     private String eventDescription;
+
+    @Column(length = 2000)
     private String eventDisapprovedReason;
+
+
+    @Column(columnDefinition = "boolean default true")
+    @JsonProperty("isVirtual")
+    private boolean isVirtual;
+
+    @Column(columnDefinition = "boolean default true")
+    @JsonProperty("isPhysical")
+    private boolean isPhysical;
+
 
     @Column(columnDefinition = "boolean default false")
     private boolean departmentCoordinatorApproval;
+
 
     @Column(columnDefinition = "boolean default false")
     private boolean deanApproval;
@@ -55,4 +71,6 @@ public class Event {
 
     @Column(columnDefinition = "boolean default false")
     private boolean completed;
+
+
 }

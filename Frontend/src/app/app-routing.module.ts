@@ -16,6 +16,7 @@ import { VerifyOtpComponent } from './login-register/verify-otp/verify-otp.compo
 import { OtpGuard } from './auth/otp.guard';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DisapprovedReasonComponent } from './events/disapproved-reason/disapproved-reason.component';
+import { MoreDetailsComponent } from './events/more-details/more-details.component';
 
 const routes: Routes = [
 
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path : 'event/create',component:CreateEventComponent,canActivate:[AuthGuard]},
   {path : 'event/edit/:id',component:EditEventComponent,canActivate:[AuthGuard]},
   {path : 'event/view/:id',component: ViewEventComponent, canActivate:[AuthGuard]},
+  {path : 'event/information/:id',component : MoreDetailsComponent},
   {path : 'event/disapproveReason/:id',component:DisapprovedReasonComponent,canActivate:[AuthGuard]},
   {path: 'events/approved',component:ApprovedComponent,canActivate:[AuthGuard]},
   {path : 'events/list',component:EventsListComponent}

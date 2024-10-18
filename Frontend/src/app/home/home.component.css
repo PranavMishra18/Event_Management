@@ -1,0 +1,244 @@
+:host {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+:host h1, :host h2, :host p {
+    margin: 0;
+    padding: 0;
+}
+
+h2{    
+    width: fit-content;    
+}
+
+h2:hover {
+    color: #0000EE;
+    cursor: pointer;
+}
+
+/* Faster fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section.ui-blocks {
+    max-width: 1350px;
+    margin: 40px auto;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards; /* Fade-in animation */
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out 0.05s forwards; /* Delayed fade-in */
+}
+
+/* Main content layout */
+.main-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    padding: 10px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out 0.1s forwards; /* Fade-in with delay */
+}
+
+/* Card container */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 30px;
+    flex-grow: 0.5;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out 0.2s forwards; /* Delayed fade-in */
+}
+
+/* Card styling */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    text-align: left;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out 0.25s forwards; /* Fade-in for each card */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 5px; /* Add spacing between lines */
+}
+
+.card a {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    font-weight: 500;
+    text-decoration: none;
+    color: #000;
+    margin-top: 20px;    
+}
+
+.card-link:hover {
+    cursor: pointer;
+}
+
+.card-link-text{
+    color: #0000EE;
+}
+
+.card a .material-icons {
+    font-size: 1.2em;    
+}
+
+/* Material icons */
+.material-icons {
+    font-size: 36px;
+    color: #3f51b5;
+}
+
+/* Search input styling */
+.search-input {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Calendar styles */
+.mat-calendar {
+    margin: 0 0 20px 0;
+    max-width: 550px;
+    border: 1px solid black;
+    border-radius: 10px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out 0.15s forwards; /* Fade-in animation for calendar */
+}
+
+:host ::ng-deep .highlight-date .mat-calendar-body-cell-content {
+    background-color: #4B0082!important; /* Highlight color */
+    color: #fff !important; /* Text color */
+    border-radius: 50%; /* Rounded effect */
+}
+
+.badge {
+    /* background-color: #4B0082; */
+    color: white;
+    padding: 3.5px 5.5px;
+    text-align: center;
+    font-size: 12.5px;
+    border-radius: 3.5px;
+}
+
+.virtual {
+    background-color: rgb(84, 117, 187);
+  }
+  
+  .physical{
+    background-color: limegreen;
+  }
+
+span + span {
+    margin-left: 5px;
+}
+
+/* Original calendar size remains unchanged */
+.calendar {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.upcoming-events{
+    margin-top: 50px;
+    background-color: #4B0082;
+    
+    width: 300px;
+    height: 300px;
+    color: white;
+    border-radius: 10px;
+    padding: 20px 0;
+
+    
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1024px) {
+    /* Stack the content vertically on smaller screens */
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Cards displayed in 1 column */
+    .card-container {
+        grid-template-columns: 1fr; /* Single card per row */
+        gap: 20px;
+    }
+
+    /* Search input width adjustment */
+    .search-input {
+        width: 90%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Reduce padding for cards */
+    .card {
+        padding: 20px;
+    }
+
+    /* Reduce margins and font sizes for smaller screens */
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .card h2 {
+        font-size: 1.2em;
+    }
+
+    .card p {
+        font-size: 0.9em;
+    }
+
+    /* Search input at full width */
+    .search-input {
+        width: 100%;
+    }
+}
+
+.paginator {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    /* background-color: rgb(230, 220, 220); */
+    color: black;
+    font-weight: 900;
+}
