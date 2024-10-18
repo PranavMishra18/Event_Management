@@ -28,6 +28,8 @@ public class EventSerializer extends JsonSerializer<Event> {
         jsonGenerator.writeStringField("eventBudget", event.getEventBudget());
         jsonGenerator.writeStringField("eventDescription", event.getEventDescription());
         jsonGenerator.writeStringField("eventDisapprovedReason", event.getEventDisapprovedReason());
+        jsonGenerator.writeBooleanField("isVirtual", event.isVirtual());
+        jsonGenerator.writeBooleanField("isPhysical", event.isPhysical());
         jsonGenerator.writeBooleanField("departmentCoordinatorApproval", event.isDepartmentCoordinatorApproval());
         jsonGenerator.writeBooleanField("deanApproval", event.isDeanApproval());
         jsonGenerator.writeBooleanField("hodApproval", event.isHodApproval());

@@ -50,40 +50,24 @@ export class CreateEventComponent implements OnInit {
     const formattedDate = date.toISOString().split('T')[0];
     const venue = f.value.venue;
     const time = f.value.time;
+    const virtual = f.value.virtual;
+    const physical = f.value.physical;
     const eventBudget = f.value.budget;
     const eventDescription = f.value.eventDescription;    
 
+    
+    console.log('virtual -> ' + virtual);
+    console.log('physical -> ' + physical);
+    
+    
 
     const event = new Event(eventTitle,coordinatorName,this.user,this.user.username,clubName,formattedDate,
-                            time,venue,eventBudget,eventDescription);
+                            time,venue,eventBudget,eventDescription,virtual,physical);
     
     this.eventService.saveEvent(event).subscribe(data => {
-
-      console.log('formattedDate');
-      this.router.navigate(['/dashboard']);
-      
-
+      this.router.navigate(['/dashboard']);  
     })
     
-    console.log(date);
+    
   }
-
-  // let formattedDate = this.formatDate(value);
-  // const alternateDate = this.convertDateFormat(formattedDate);
-  // formatDate(date: Date): string {
-  //   // Example format: YYYY-MM-DD
-  //   const year = date.getFullYear();
-  //   const month = ('0' + (date.getMonth() + 1)).slice(-2); // Adding 1 to month as it's zero-based
-  //   const day = ('0' + date.getDate()).slice(-2);
-  //   return `${year}/${month}/${day}`;
-  // }
-  
-  // convertDateFormat(dateString: string): string {
-  //   // Assuming dateString is in YYYY-MM-DD format
-  //   const parts = dateString.split('/');
-  //   return `${parts[2]}/${parts[1]}/${parts[0]}`; // Assuming the desired format is DD/MM/YYYY
-  // }
-  
-
-
 }

@@ -40,6 +40,8 @@ import { DisapproveDialogComponent } from './dialogs/disapprove-dialog/disapprov
 import { DeleteEventDialogComponent } from './dialogs/delete-event-dialog/delete-event-dialog.component';
 import { LoadingDialogComponent } from './dialogs/loading-dialog/loading-dialog.component';
 import { DisapprovedReasonComponent } from './events/disapproved-reason/disapproved-reason.component';
+import { MoreDetailsComponent } from './events/more-details/more-details.component';
+
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import { DisapprovedReasonComponent } from './events/disapproved-reason/disappro
     DisapproveDialogComponent,
     DeleteEventDialogComponent,
     LoadingDialogComponent,
-    DisapprovedReasonComponent
+    DisapprovedReasonComponent,
+    MoreDetailsComponent,
   ],
   imports: [
     BrowserModule,

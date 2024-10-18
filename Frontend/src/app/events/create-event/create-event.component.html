@@ -56,6 +56,10 @@
         <mat-error *ngIf="budget.hasError('required')">Field cannot be empty.</mat-error>            
     </mat-form-field>
 
+    <mat-checkbox name="virtual" ngModel #virtual="ngModel">Virtual</mat-checkbox>
+    <br>
+    <mat-checkbox name="physical" ngModel #physical="ngModel">Physical</mat-checkbox>
+
     <mat-form-field class="desc">
         <mat-label>Event Description</mat-label>
         <mat-hint>Post useful information like WhatsApp group link, contact information, etc. here</mat-hint>

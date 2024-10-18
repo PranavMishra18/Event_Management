@@ -15,6 +15,9 @@
         <span class="nav-link nav-text">{{email}}</span>
         <a  (click)="logout()" class="nav-link nav-text pointer">Logout</a>
       </div>
+      <div *ngIf="email === ''" class="navbar-nav ms-auto">        
+        <a  [routerLink]="['/dashboard']" class="nav-link nav-text pointer">Login</a>
+      </div>
     </div>
   </div>
 </nav>

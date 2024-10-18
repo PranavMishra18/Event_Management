@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+
+<section class="event-details-section">
+
+  <mat-calendar *ngIf="eventsLoaded" 
+    [dateClass]="highlightEventDates" 
+    class="calendar">
+  </mat-calendar>
+
+  <div class="event-details-container">    
+    <div class="event-details-card">
+      <h1>{{event.eventTitle}}</h1>
+      <div class="event-meta">
+        <span *ngIf="event.isVirtual" class="badge virtual">Virtual</span>
+        <span *ngIf="event.isPhysical" class="badge physical">Physical</span>
+      </div>
+
+      <p><strong>Club:</strong> {{event.clubName}}</p>
+      <p><strong>Date:</strong> {{event.date | date: 'dd/MM/yyyy'}}</p>
+      <p><strong>Time:</strong> {{event.time}}</p>
+      <p><strong>Venue:</strong> {{event.venue}}</p>
+
+      <div class="event-description">
+        <h3>Event Description:</h3>
+        <p>{{event.eventDescription}}</p>
+      </div>
+
+      <p><strong>Event Coordinator:</strong> {{event.coordinatorName}}</p>
+      <p>{{event.email}}</p>                                            
+
+      <div class="back-button">
+        <button mat-raised-button (click)="goBack()">Back to Events</button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,107 @@
+.event-details-section {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: flex-start; /* Align items to the top */
+  flex-direction: row-reverse; /* Same as main content */
+  padding: 20px;
+  gap: 50px; /* Space between calendar and details */
+  margin: 0 auto; /* Center section on the page */
+  max-width: 1200px; /* Optional: Set a max width for the entire section */
+  margin-top: 70px;
+}
+
+.event-details-container {
+  max-width: 800px; /* Adjusted for consistency */
+  width: 100%;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.event-details-card {
+  text-align: left;
+}
+
+.event-details-card h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.event-meta {
+  margin-bottom: 20px;
+}
+
+
+
+.event-meta .badge {
+  /* background-color: #4B0082; */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.virtual {
+  background-color: rgb(84, 117, 187);
+}
+
+.physical{
+  background-color: limegreen;
+}
+
+.event-description h3 {
+  margin-top: 30px;
+  font-size: 1.5em;
+}
+
+.event-description p {
+  font-size: 1.1em;
+  color: #555;
+}
+
+.back-button {
+  margin-top: 30px;
+}
+
+.back-button button {
+  font-size: 1.1em;
+  padding: 10px 20px;
+  background-color: #4B0082;
+  color: white;
+}
+
+/* Calendar styles */
+.calendar {
+  width: 300px; /* Match the original calendar width */
+  margin-left: auto;
+  margin-right: auto;
+  height: 375px;
+}
+
+.mat-calendar {
+  margin: 0 0 20px 0;
+  max-width: 550px; /* Match max width */
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+:host ::ng-deep .highlight-date .mat-calendar-body-cell-content {
+  background-color: #4B0082!important; /* Highlight color */
+  color: #fff !important; /* Text color */
+  border-radius: 50%; /* Rounded effect */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .event-details-section {
+      flex-direction: column; /* Stack elements vertically on smaller screens */
+      align-items: center; /* Center items */
+  }
+
+  .calendar {
+      width: 100%; /* Make calendar full width on small screens */
+      max-width: 300px; /* Limit max width */
+  }
+}
