@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Event } from "./entities/event";
 import { log } from "console";
-import {environment} from "../environments/environment"
+
 
 @Injectable({
     providedIn : 'root'
@@ -10,9 +10,9 @@ import {environment} from "../environments/environment"
 export class EventService{
 
 
-    // baseUrl = "http://155.248.254.4:8080"; // PRODUCTION API
+    baseUrl = "http://155.248.254.4:8080"; // PRODUCTION API
     // baseUrl = "http://localhost:8080"; // LOCAL HOST
-    baseUrl = environment.baseUrl;
+    
 
 
 
