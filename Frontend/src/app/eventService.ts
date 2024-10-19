@@ -9,6 +9,7 @@ import { log } from "console";
 export class EventService{
 
 
+    // baseUrl = "http://155.248.254.4:8080";
     baseUrl = "http://localhost:8080";
 
 

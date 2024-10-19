@@ -8,6 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class AuthService {
+  // private baseUrl = 'http://155.248.254.4:8080'; 
   private baseUrl = 'http://localhost:8080'; 
   private tokenKey = 'authToken';
   private email : string;

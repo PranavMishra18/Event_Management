@@ -11,14 +11,14 @@
 
   <div class="main-content">
 
-    <!-- <div class="event-count">
+    <div class="event-count">
         <mat-calendar *ngIf="eventsLoaded" [dateClass]="highlightEventDates" class="calendar"></mat-calendar>
-        <div class="upcoming-events">
+        <!-- <div class="upcoming-events">
             <h1>UPCOMING EVENTS</h1>
 
             <h1 class="total-events">{{totalEvents}}</h1>
-        </div>        
-    </div> -->
+        </div>         -->
+    </div>
 
     
 
@@ -41,6 +41,6 @@
   </div>
 
   <!-- Paginator -->
-  <mat-paginator class="paginator" [length]="filteredEvents().length" [pageSize]="pageSize" [pageIndex]="pageIndex" [showFirstLastButtons]="true" (page)="onPageChange($event)">
-  </mat-paginator>
 </section>
+<mat-paginator class="paginator" [length]="filteredEvents().length" [pageSize]="pageSize" [pageIndex]="pageIndex" [showFirstLastButtons]="true" (page)="onPageChange($event)">
+</mat-paginator>
