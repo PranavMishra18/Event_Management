@@ -238,7 +238,7 @@ span + span {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    /* background-color: rgb(230, 220, 220); */
-    color: black;
+    background-color: #4B0082;
+    color: white;
     font-weight: 900;
 }
