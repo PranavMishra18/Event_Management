@@ -11,11 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {
-        "http://localhost:4200",
-        "http://event-sync-angular.s3-website-ap-southeast-2.amazonaws.com",
-        "http://155.248.254.4:4200"
-})
+@CrossOrigin(origins = "http://localhost:4200")
 public class EventController {
 
     @Autowired

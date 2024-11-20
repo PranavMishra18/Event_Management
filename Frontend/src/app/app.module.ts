@@ -10,7 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { LoginComponent } from './login-register/login/login.component';
-import { CreateUserComponent } from './users/create-user/create-user.component';
+import { RegisterComponent } from './login-register/register/register.component';
 import { DashboardComponent } from './events/dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -41,16 +41,13 @@ import { DeleteEventDialogComponent } from './dialogs/delete-event-dialog/delete
 import { LoadingDialogComponent } from './dialogs/loading-dialog/loading-dialog.component';
 import { DisapprovedReasonComponent } from './events/disapproved-reason/disapproved-reason.component';
 import { MoreDetailsComponent } from './events/more-details/more-details.component';
-import { UserProfileComponent } from './users/user-profile/user-profile.component';
-import { AllUsersComponent } from './users/all-users/all-users.component';
-import { EditUserComponent } from './users/edit-user/edit-user.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,    
     LoginComponent,
-    CreateUserComponent,
+    RegisterComponent,
     DashboardComponent,
     HomeComponent,
     NavbarComponent,
@@ -78,9 +75,6 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
     LoadingDialogComponent,
     DisapprovedReasonComponent,
     MoreDetailsComponent,
-    UserProfileComponent,
-    AllUsersComponent,
-    EditUserComponent,
   ],
   imports: [
     BrowserModule,
