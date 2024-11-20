@@ -1,6 +1,10 @@
-/* events.component.css */
+/* Centering the table */
+.table-container {
+    width: 85%;  /* Adds left and right margins for centering */
+    margin: 0 auto;
+}
 
-h1{
+h1 {
     text-align: center;
     margin-top: 18px;
 }
@@ -33,24 +37,24 @@ h1{
     color: #3f51b5;
     font-size: 2em;
     font-weight: bold;
-  }
+}
 
-.view-clr{
+.view-clr {
     background-color: rgb(131, 128, 128);
 }
 
-.firstbtn{
+.firstbtn {
     margin-left: 20px;
 }
 
-.active-link{
+.active-link {
     background-color: #1d2d45;
 }
 
+/* Styles for the table */
 .custom-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
     margin-top: 30px;
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
@@ -64,49 +68,41 @@ h1{
     border-bottom: 1px solid #ddd;
 }
 
-.custom-table thead th {
-    background-color: #00C1A1;   /* #78a1ca */
+/* Table Header Styling */
+/* .table-header-row {
+    background-color: #00C1A1;
     color: white;
     text-transform: uppercase;
+} */
+
+.table-header {
+    font-weight: bold;
 }
 
-.custom-table tbody tr {
-    transition: background-color 0.2s ease;
+/* Table Row Styling */
+.table-row:hover {
+    background-color: #f5f5f5;
 }
 
-.custom-table tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-.custom-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.mat-icon-button {
-    margin-right: 5px;
-}
-
-.mat-icon-button:hover {
-    background-color: rgba(44, 62, 80, 0.1);
-}
-
-
-.dpcoord{
-    text-align: center;
-}
-
-.mat-tooltip {
+/* Table Cell Styling */
+.table-cell {
     font-size: 0.9rem;
 }
 
-.leftShift{
-    margin-left: 5px;
+/* Icon Styles */
+.icon-check {
+    color: green;
 }
 
-.large-icon .mat-icon {
-    font-size: 24px; /* Increase icon size */
+.icon-warn {
+    color: red;
 }
 
-.check-icon {
-    color: green; /* Change check icon color to green */
+.icon-remove {
+    color: gray;
+}
+
+/* Action Button Styles */
+.action-btn {
+    margin: 0 5px;
 }

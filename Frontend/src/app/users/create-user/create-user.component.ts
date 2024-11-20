@@ -7,11 +7,11 @@ import { log } from 'console';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  selector: 'app-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrl: './create-user.component.css'
 })
-export class RegisterComponent {
+export class CreateUserComponent {
 
   
 
