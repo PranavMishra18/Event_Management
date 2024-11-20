@@ -9,7 +9,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AuthService {
   // private baseUrl = 'http://155.248.254.4:8080'; 
-  private baseUrl = 'http://localhost:8080'; 
+  baseUrl = "http://155.248.254.4:8082"; // LOCAL HOST
   // private baseUrl = 'http://eventsync.ap-southeast-2.elasticbeanstalk.com'; 
   private tokenKey = 'authToken';
   private email : string;

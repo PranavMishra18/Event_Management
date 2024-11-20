@@ -11,7 +11,7 @@ export class EventService{
 
 
     // baseUrl = "http://155.248.254.4:8080"; // PRODUCTION API
-    baseUrl = "http://localhost:8080"; // LOCAL HOST
+    baseUrl = "http://155.248.254.4:8082"; // LOCAL HOST
     // baseUrl = "http://eventsync.ap-southeast-2.elasticbeanstalk.com";
     
 
