@@ -235,11 +235,10 @@ span + span {
 }
 
 .paginator {
-    margin-top: 60px;
-    
+    margin-top: 20px;
     display: flex;
     justify-content: center;
-    background-color: white;
-    color: black;
+    background-color: #4B0082;
+    color: white;
     font-weight: 900;
 }

@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { AuthService } from '../authService';
 import { isPlatformBrowser } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +15,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private router : Router
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
@@ -29,12 +27,6 @@ export class NavbarComponent implements OnInit {
         this.role = userDetails.role;
       }
     }
-  }
-
-  viewProfile(userId : number){
-
-    this.router.navigate([`/user/profile/${userId}`]);
-
   }
 
   logout() {

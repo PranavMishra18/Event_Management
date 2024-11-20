@@ -1,111 +1,64 @@
 <h1 class="title">Your Events Status</h1>
 <br>
 
-<div class="actions">
-    <a [routerLink]="['/event/create']" mat-raised-button class="firstbtn customclr">Create Event <mat-icon>add</mat-icon></a>
-    <a [routerLink]="['/dashboard']" mat-raised-button class="customclr customclr-active">Your Event Status</a>
-    <a [routerLink]="['/events/list']" mat-raised-button class="customclr">All Events Status</a>
-    <a [routerLink]="['/events/list']" mat-raised-button class="customclr">Attendance Management</a>
-    <a [routerLink]="['/events/list']" mat-raised-button class="customclr">Event Photos</a>
-    <a [routerLink]="['/events/list']" mat-raised-button class="customclr">Event Completion Report</a>
-</div>
+<!-- customclr, title, viewclr-->
 
-<div class="table-container">
-    <table mat-table [dataSource]="dataSource" matSort class="custom-table mat-elevation-z8">
-        <!-- S No Column -->
-        <ng-container matColumnDef="index">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">S No.</th>
-            <td mat-cell *matCellDef="let element; let i = index" class="table-cell">{{ i + 1 }}.</td>
-        </ng-container>
+<a [routerLink]="['/event/create']"  mat-raised-button class="firstbtn customclr">Create Event <mat-icon>add</mat-icon></a>
+<a [routerLink]="['/dashboard']" mat-raised-button class="customclr customclr-active">Your Event Status </a>
+<a [routerLink]="['/events/list']" mat-raised-button class="customclr">All Events Status </a>
+<a [routerLink]="['/events/list']" mat-raised-button class="customclr">Attendance Management </a>
+<a [routerLink]="['/events/list']" mat-raised-button class="customclr">Event Photos </a>
+<a [routerLink]="['/events/list']" mat-raised-button class="customclr">Event Completion Report </a>
 
-        <!-- Event Title Column -->
-        <ng-container matColumnDef="eventTitle">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">Event Title</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">{{ element.eventTitle }}</td>
-        </ng-container>
-
-        <!-- Club Column -->
-        <ng-container matColumnDef="clubName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">Club</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">{{ element.clubName }}</td>
-        </ng-container>
-
-        <!-- Date Column -->
-        <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">Date</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">{{ element.date | date: 'dd/MM/yyyy' }}</td>
-        </ng-container>
-
-        <!-- Venue Column -->
-        <ng-container matColumnDef="venue">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">Venue</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">{{ element.venue }}</td>
-        </ng-container>
-
-        <!-- Time Column -->
-        <ng-container matColumnDef="time">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">Time</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">{{ element.time }}</td>
-        </ng-container>
-
-        <!-- Dept Coord Column -->
-        <ng-container matColumnDef="departmentCoordinatorApproval">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">Dept Coord.</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">
-                <mat-icon *ngIf="element.departmentCoordinatorApproval" color="primary" class="icon-check">check_circle</mat-icon>
-                <mat-icon *ngIf="!element.departmentCoordinatorApproval && element.disapproved" color="warn" class="icon-warn">cancel</mat-icon>
-                <mat-icon *ngIf="!element.departmentCoordinatorApproval && !element.disapproved" class="icon-remove">remove_circle</mat-icon>
+<table class="table table-hover custom-table">
+    <thead>
+        <tr>
+            <th scope="col">S No.</th>
+            <th scope="col">Event Title</th>
+            <th scope="col">Club</th>
+            <th scope="col">Date</th>
+            <th scope="col">Venue</th>
+            <th scope="col">Time</th>
+            <th class="dpcoord" scope="col">Dept Coord.</th>
+            <th scope="col">HOD</th>
+            <th scope="col">Dean</th>
+            <th scope="col">IQAC</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let event of events; let i = index">
+            <th>{{ i + 1 }}.</th>
+            <td>{{ event.eventTitle }}</td>
+            <td>{{ event.clubName }}</td>
+            <td>{{ event.date | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ event.venue }}</td>
+            <td>{{ event.time }}</td>
+            <td class="dpcoord">
+                <button *ngIf="event.departmentCoordinatorApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
+                <button *ngIf="!event.departmentCoordinatorApproval && event.disapproved" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.departmentCoordinatorApproval && !event.disapproved" mat-icon-button class="mat-icon-button large-icon "  matTooltip="Not Viewed"><mat-icon>remove_circle</mat-icon></button>
             </td>
-        </ng-container>
-
-        <!-- HOD Column -->
-        <ng-container matColumnDef="hodApproval">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">HOD</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">
-                <mat-icon *ngIf="element.hodApproval" color="primary" class="icon-check">check_circle</mat-icon>
-                <mat-icon *ngIf="!element.hodApproval && element.disapproved" color="warn" class="icon-warn">cancel</mat-icon>
-                <mat-icon *ngIf="!element.hodApproval && !element.disapproved" class="icon-remove">remove_circle</mat-icon>
+            <td>
+                <button *ngIf="event.hodApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
+                <button *ngIf="!event.hodApproval && event.disapproved" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.hodApproval && !event.disapproved" mat-icon-button class="mat-icon-button large-icon "  matTooltip="Not Viewed"><mat-icon>remove_circle</mat-icon></button>
             </td>
-        </ng-container>
-
-        <!-- Dean Column -->
-        <ng-container matColumnDef="deanApproval">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">Dean</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">
-                <mat-icon *ngIf="element.deanApproval" color="primary" class="icon-check">check_circle</mat-icon>
-                <mat-icon *ngIf="!element.deanApproval && element.disapproved" color="warn" class="icon-warn">cancel</mat-icon>
-                <mat-icon *ngIf="!element.deanApproval && !element.disapproved" class="icon-remove">remove_circle</mat-icon>
+            <td>
+                <button *ngIf="event.deanApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
+                <button *ngIf="!event.deanApproval && event.disapproved" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.deanApproval && !event.disapproved" mat-icon-button class="mat-icon-button large-icon "  matTooltip="Not Viewed"><mat-icon>remove_circle</mat-icon></button>
             </td>
-        </ng-container>
-
-        <!-- IQAC Column -->
-        <ng-container matColumnDef="iqacApproval">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-header">IQAC</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">
-                <mat-icon *ngIf="element.iqacApproval" color="primary" class="icon-check">check_circle</mat-icon>
-                <mat-icon *ngIf="!element.iqacApproval && element.disapproved" color="warn" class="icon-warn">cancel</mat-icon>
-                <mat-icon *ngIf="!element.iqacApproval && !element.disapproved" class="icon-remove">remove_circle</mat-icon>
+            <td>
+                <button *ngIf="event.iqacApproval" mat-icon-button class="mat-icon-button large-icon" color="primary" matTooltip="Approved"><mat-icon class="check-icon">check_circle</mat-icon></button>
+                <button *ngIf="!event.iqacApproval && event.disapproved" mat-icon-button class="mat-icon-button large-icon" color="warn" matTooltip="Not Approved"><mat-icon>cancel</mat-icon></button>
+                <button *ngIf="!event.iqacApproval && !event.disapproved" mat-icon-button class="mat-icon-button large-icon "  matTooltip="Not Viewed"><mat-icon>remove_circle</mat-icon></button>
             </td>
-        </ng-container>
-
-        <!-- Actions Column -->
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef class="table-header">Actions</th>
-            <td mat-cell *matCellDef="let element" class="table-cell">
-                <button mat-mini-fab color="primary" matTooltip="Edit Event" class="action-btn" (click)="editEvent(element.id)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab color="accent" matTooltip="View Event" class="action-btn" (click)="viewEvent(element.id)">
-                    <mat-icon>visibility</mat-icon>
-                </button>
-                <button mat-mini-fab color="warn" matTooltip="Delete Event" class="action-btn" (click)="openDeleteDialog('0ms', '0ms', element.eventTitle, element.id)">
-                    <mat-icon>delete</mat-icon>
-                </button>
+            <td>
+                <button mat-mini-fab class="mat-icon-button" color="primary" (click)="editEvent(event.id)" matTooltip="Edit Event"><mat-icon>edit</mat-icon></button>
+                <button mat-mini-fab class="mat-icon-button leftShift" (click)="viewEvent(event.id)" class="view-clr" matTooltip="View Event"><mat-icon>visibility</mat-icon></button>
+                <button mat-mini-fab class="mat-icon-button leftShift" (click)="openDeleteDialog('0ms','0ms',event.eventTitle,event.id)" color="warn" matTooltip="Delete Event"><mat-icon>delete</mat-icon></button>
             </td>
-        </ng-container>
-
-        <!-- Header and Row Declarations -->
-        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="table-header-row"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></tr>
-    </table>
-</div>
+        </tr>
+    </tbody>
+</table>
