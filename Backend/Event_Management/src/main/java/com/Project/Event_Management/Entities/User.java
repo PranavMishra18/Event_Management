@@ -3,6 +3,7 @@ package com.Project.Event_Management.Entities;
 import com.Project.Event_Management.Serializers.UserSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,26 +12,32 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
 @Entity
 @Table(name="user")
 @JsonSerialize(using = UserSerializer.class)
 public class User implements UserDetails {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
 
+
     String username;
 
     String password;
 
+
     @Column(unique = true)
     String email;
+
 
     @Column(length = 150)
     @Enumerated(value = EnumType.STRING)
     Role role;
+
 
     @OneToMany(mappedBy = "coordinator",cascade = CascadeType.ALL)
     List<Event> events = new ArrayList<>();
@@ -46,12 +53,9 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     public Long getId() {
@@ -62,16 +66,16 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Event> getEvents() {
+        return events;
     }
 
     public String getEmail() {
@@ -82,15 +86,23 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
     public String getPassword() {
         return password;
     }
+
 
     public String getUsername() {
         return username;
@@ -114,10 +126,6 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     @Override

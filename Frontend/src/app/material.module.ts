@@ -16,6 +16,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {  MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
+import {MatMenuModule} from '@angular/material/menu';
 
 
 export const CUSTOM_DATE_FORMATS = {
@@ -36,10 +37,10 @@ export const CUSTOM_DATE_FORMATS = {
 
     imports :[MatButtonModule,MatIconButton,MatIconModule,MatFormFieldModule,MatSelectModule,MatInputModule,
         BrowserAnimationsModule,MatCardModule,MatDatepickerModule,MatNativeDateModule,MatTableModule,MatTooltipModule,MatDialogModule,
-      MatProgressBarModule,MatProgressSpinnerModule,MatCheckboxModule,MatPaginatorModule],
+      MatProgressBarModule,MatProgressSpinnerModule,MatCheckboxModule,MatPaginatorModule,MatMenuModule],
     exports : [MatButtonModule,MatIconButton,MatIconModule,MatFormFieldModule,MatSelectModule,MatInputModule,
         BrowserAnimationsModule,MatCardModule,MatDatepickerModule,MatNativeDateModule,MatTableModule,MatTooltipModule,MatDialogModule,
-      MatProgressBarModule,MatProgressSpinnerModule,MatCheckboxModule,MatPaginatorModule],
+      MatProgressBarModule,MatProgressSpinnerModule,MatCheckboxModule,MatPaginatorModule,MatMenuModule],
       providers: [
         // Provide the custom date formats
         { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }

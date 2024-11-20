@@ -10,13 +10,25 @@
         <a class="nav-link nav-text" href="#">About</a>
         <a class="nav-link nav-text" href="#">Clubs</a>
         <a [routerLink]="['/dashboard']" class="nav-link nav-text">Create Events</a>
+        <a *ngIf="role === 'ADMIN'" [routerLink]="['/users']" class="nav-link nav-text">Users</a>
       </div>
+
+      <!-- Conditional Nav Links -->
       <div *ngIf="email" class="navbar-nav ms-auto">
-        <span class="nav-link nav-text">{{email}}</span>
-        <a  (click)="logout()" class="nav-link nav-text pointer">Logout</a>
+        <a mat-button [matMenuTriggerFor]="userMenu" class="nav-link nav-text pointer">
+          {{email}}
+          <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+        </a>
+        
+        <mat-menu #userMenu="matMenu" class="custom-menu">
+          <button mat-menu-item (click)="logout()">Logout</button>
+          <button mat-menu-item (click)="viewProfile(userId)">Profile</button>
+          
+        </mat-menu>
       </div>
-      <div *ngIf="email === ''" class="navbar-nav ms-auto">        
-        <a  [routerLink]="['/dashboard']" class="nav-link nav-text pointer">Login</a>
+
+      <div *ngIf="!email" class="navbar-nav ms-auto">        
+        <a [routerLink]="['/dashboard']" class="nav-link nav-text pointer">Login</a>
       </div>
     </div>
   </div>
