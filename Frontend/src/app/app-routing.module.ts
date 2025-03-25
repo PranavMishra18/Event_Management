@@ -20,31 +20,65 @@ import { MoreDetailsComponent } from './events/more-details/more-details.compone
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { User } from './entities/user';
 import { AllUsersComponent } from './users/all-users/all-users.component';
+import { CompletedEventsComponent } from './events/completed-events/completed-events.component';
+import { CompletedEventAnalyticsComponent } from './events/completed-event-analytics/completed-event-analytics.component';
 
 const routes: Routes = [
-
-  {path: '',component:LandingPageComponent},  
-  {path : 'home',component:HomeComponent},
-  {path : 'login',component:LoginComponent},
-  {path : 'register',component:CreateUserComponent},
-  {path : 'forgot-password',component:ForgotPasswordComponent},
-  {path : 'verify-otp',component:VerifyOtpComponent},
-  {path : 'reset-password',component:ResetPasswordComponent,canActivate:[OtpGuard]},
-  {path : 'dashboard',component : DashboardComponent,canActivate:[AuthGuard]},
-  {path : 'users',component: AllUsersComponent, canActivate:[AuthGuard]},
-  {path : 'user/profile/:id',component: UserProfileComponent, canActivate:[AuthGuard]},
-  {path : 'event/create',component:CreateEventComponent,canActivate:[AuthGuard]},
-  {path : 'event/edit/:id',component:EditEventComponent,canActivate:[AuthGuard]},
-  {path : 'event/view/:id',component: ViewEventComponent, canActivate:[AuthGuard]},
-  {path : 'event/information/:id',component : MoreDetailsComponent},
-  {path : 'event/disapproveReason/:id',component:DisapprovedReasonComponent,canActivate:[AuthGuard]},
-  {path: 'events/approved',component:ApprovedComponent,canActivate:[AuthGuard]},
-  {path : 'events/list',component:EventsListComponent}
-
+  { path: '', component: LandingPageComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: CreateUserComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'verify-otp', component: VerifyOtpComponent },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
+    canActivate: [OtpGuard],
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'users', component: AllUsersComponent, canActivate: [AuthGuard] },
+  {
+    path: 'user/profile/:id',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'event/create',
+    component: CreateEventComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'event/edit/:id',
+    component: EditEventComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'event/view/:id',
+    component: ViewEventComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'event/information/:id', component: MoreDetailsComponent },
+  {
+    path: 'event/disapproveReason/:id',
+    component: DisapprovedReasonComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'events/approved',
+    component: ApprovedComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'events/completed', component: CompletedEventsComponent },
+  { path: 'event/completed/:id', component: CompletedEventAnalyticsComponent },
+  { path: 'events/list', component: EventsListComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

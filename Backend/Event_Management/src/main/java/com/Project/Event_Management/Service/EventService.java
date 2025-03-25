@@ -38,6 +38,10 @@ public class EventService {
 
     }
 
+    public List<Event> getCompletedEvents(){
+        return eventRepository.getCompletedEvents();
+    }
+
     // Unconfirmed
     public List<Event> getUnapprovedEvents(){
 

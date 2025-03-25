@@ -1,15 +1,15 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Event } from '../entities/event';
-import { EventService } from '../eventService';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Event } from '../../entities/event';
+import { EventService } from '../../eventService';
+import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-completed-events',
+  templateUrl: './completed-events.component.html',
+  styleUrls: ['./completed-events.component.css'],
 })
-export class HomeComponent implements OnInit, OnChanges {
+export class CompletedEventsComponent implements OnInit, OnChanges {
   events: Event[] = [];
   searchTerm: string = '';
   eventsLoaded: boolean = false;
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, OnChanges {
   constructor(private eventService: EventService, private router: Router) {}
 
   ngOnInit(): void {
-    this.eventService.getAllConfirmedEvents().subscribe((data) => {
+    this.eventService.getCompletedEvents().subscribe((data) => {
       this.events = data;
       this.totalEvents = this.events.length;
       this.eventsLoaded = true;
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   moreDetails(eventId: number) {
-    this.router.navigate([`event/information/${eventId}`]);
+    this.router.navigate([`event/completed/${eventId}`]);
   }
 
   filteredEvents(): Event[] {
@@ -59,11 +59,6 @@ export class HomeComponent implements OnInit, OnChanges {
     this.updatePaginatedEvents();
   }
 
-  // Return the paginated events to be displayed
-  pagedEvents(): Event[] {
-    return this.paginatedEvents;
-  }
-
   // Update the paginated events when the search term changes
   onSearchChange(): void {
     this.pageIndex = 0; // Reset to the first page on search
@@ -73,15 +68,4 @@ export class HomeComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.updatePaginatedEvents();
   }
-
-  highlightEventDates = (date: Date): string | undefined => {
-    const eventDates = this.events.map((event) => new Date(event.date));
-    const isEventDate = eventDates.some(
-      (eventDate) =>
-        eventDate.getDate() === date.getDate() &&
-        eventDate.getMonth() === date.getMonth() &&
-        eventDate.getFullYear() === date.getFullYear()
-    );
-    return isEventDate ? 'highlight-date' : undefined;
-  };
 }

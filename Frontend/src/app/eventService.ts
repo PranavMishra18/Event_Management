@@ -1,164 +1,166 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Event } from "./entities/event";
-import { log } from "console";
-
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Event } from './entities/event';
+import { log } from 'console';
 
 @Injectable({
-    providedIn : 'root'
+  providedIn: 'root',
 })
-export class EventService{
+export class EventService {
+  // baseUrl = "http://155.248.254.4:8082"; // PRODUCTION API
+  baseUrl = 'http://localhost:8080'; // LOCAL
+  // baseUrl = "http://eventsync.ap-southeast-2.elasticbeanstalk.com";
 
+  constructor(private http: HttpClient) {}
 
-    // baseUrl = "http://155.248.254.4:8080"; // PRODUCTION API
-    baseUrl = "http://155.248.254.4:8082"; // LOCAL HOST
-    // baseUrl = "http://eventsync.ap-southeast-2.elasticbeanstalk.com";
-    
+  getEvents() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events`);
+  }
 
+  getEventsByUserId(id: number) {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/user/${id}`);
+  }
 
+  getCompletedEvents() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/completed`);
+  }
 
-    constructor(private http : HttpClient){
+  getConfirmedByDC() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/confirmedByDC`);
+  }
 
+  getConfirmedByHOD() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/confirmedByHOD`);
+  }
 
-    }
+  getConfirmedByDean() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/confirmedByDean`);
+  }
 
-    getEvents(){
-        return this.http.get<Event[]>(`${this.baseUrl}/events`);
-    }
+  getConfirmedByIQAC() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/confirmedByIQAC`);
+  }
 
-    getEventsByUserId(id : number){
-        return this.http.get<Event[]>(`${this.baseUrl}/events/user/${id}`);
-    }
+  getEventsForDC() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/dc`);
+  }
 
-    getConfirmedByDC(){
-        return this.http.get<Event[]>(`${this.baseUrl}/events/confirmedByDC`);
-    }
+  getEventsForHOD() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/hod`);
+  }
 
-    getConfirmedByHOD(){
-        return this.http.get<Event[]>(`${this.baseUrl}/events/confirmedByHOD`);
-    }
+  getEventsForDean() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/dean`);
+  }
 
-    getConfirmedByDean(){
-        return this.http.get<Event[]>(`${this.baseUrl}/events/confirmedByDean`);
-    }
+  getEventsForIQAC() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/iqac`);
+  }
 
-    getConfirmedByIQAC(){
-        return this.http.get<Event[]>(`${this.baseUrl}/events/confirmedByIQAC`);
-    }
+  getAllConfirmedEvents() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/confirmed`);
+  }
 
-    getEventsForDC(){        
-        return this.http.get<Event[]>(`${this.baseUrl}/events/dc`);
-    }
+  getAllUnconfirmedEvents() {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/unconfirmed`);
+  }
 
-    getEventsForHOD(){
-        return this.http.get<Event[]>(`${this.baseUrl}/events/hod`);
-    }
+  getEvent(id: number) {
+    return this.http.get<Event>(`${this.baseUrl}/events/${id}`);
+  }
 
-    getEventsForDean(){
-        return this.http.get<Event[]>(`${this.baseUrl}/events/dean`);
-    }
+  saveEvent(event: Event) {
+    return this.http.post(`${this.baseUrl}/events/save`, event);
+  }
 
-    getEventsForIQAC(){
-        return this.http.get<Event[]>(`${this.baseUrl}/events/iqac`);
-    }
+  editEvent(eventId: number, event: Event) {
+    return this.http.put(`${this.baseUrl}/events/update/${eventId}`, event);
+  }
 
-    getAllConfirmedEvents(){
+  deleteEvent(eventId: number) {
+    console.log(`Id to delete is :- ${eventId}`);
 
-        return this.http.get<Event[]>(`${this.baseUrl}/events/confirmed`);
+    return this.http.delete(`${this.baseUrl}/events/delete/${eventId}`);
+  }
 
-    }
+  getUser(id: number) {
+    return this.http.get<any>(`${this.baseUrl}/user/${id}`);
+  }
 
-    getAllUnconfirmedEvents(){
+  departmentCoordinatorApproves(eventId: number) {
+    return this.http.put(`${this.baseUrl}/event/dc/approves/${eventId}`, null);
+  }
 
-        return this.http.get<Event[]>(`${this.baseUrl}/events/unconfirmed`);
+  hodApproves(eventId: number) {
+    return this.http.put(`${this.baseUrl}/event/hod/approves/${eventId}`, null);
+  }
 
-    }
+  deanApproves(eventId: number) {
+    return this.http.put(
+      `${this.baseUrl}/event/dean/approves/${eventId}`,
+      null
+    );
+  }
 
-    getEvent(id : number){
-        return this.http.get<Event>(`${this.baseUrl}/events/${id}`);
-    }
+  iqacApproves(eventId: number) {
+    return this.http.put(
+      `${this.baseUrl}/event/iqac/approves/${eventId}`,
+      null
+    );
+  }
 
-    saveEvent(event : Event){
+  departmentCoordinatorDisapproves(
+    eventId: number,
+    eventDisapprovalReason: string
+  ) {
+    const params = new HttpParams().set(
+      'eventDisapprovalReason',
+      eventDisapprovalReason
+    );
 
-        return this.http.post(`${this.baseUrl}/events/save`,event);
+    return this.http.put(
+      `${this.baseUrl}/event/dc/disapproves/${eventId}`,
+      null,
+      { params }
+    );
+  }
 
-    }
+  hodDisapproves(eventId: number, eventDisapprovalReason: string) {
+    const params = new HttpParams().set(
+      'eventDisapprovalReason',
+      eventDisapprovalReason
+    );
 
-    editEvent(eventId : number, event : Event){
+    return this.http.put(
+      `${this.baseUrl}/event/hod/disapproves/${eventId}`,
+      null,
+      { params }
+    );
+  }
 
-        return this.http.put(`${this.baseUrl}/events/update/${eventId}`,event);
+  deanDisapproves(eventId: number, eventDisapprovalReason: string) {
+    const params = new HttpParams().set(
+      'eventDisapprovalReason',
+      eventDisapprovalReason
+    );
 
-    }
+    return this.http.put(
+      `${this.baseUrl}/event/dean/disapproves/${eventId}`,
+      null,
+      { params }
+    );
+  }
 
-    deleteEvent(eventId : number){
-        
-        console.log(`Id to delete is :- ${eventId}`);
-        
-        
-        return this.http.delete(`${this.baseUrl}/events/delete/${eventId}`)
-    }
+  iqacDisapproves(eventId: number, eventDisapprovalReason: string) {
+    const params = new HttpParams().set(
+      'eventDisapprovalReason',
+      eventDisapprovalReason
+    );
 
-    getUser(id : number){
-
-        return this.http.get<any>(`${this.baseUrl}/user/${id}`);
-
-    }
-
-    departmentCoordinatorApproves(eventId :number){
-
-        return this.http.put(`${this.baseUrl}/event/dc/approves/${eventId}`,null);
-
-    }
-
-    hodApproves(eventId :number){
-
-        return this.http.put(`${this.baseUrl}/event/hod/approves/${eventId}`,null);
-
-    }
-
-    deanApproves(eventId :number){
-
-        return this.http.put(`${this.baseUrl}/event/dean/approves/${eventId}`,null);
-
-    }
-
-    iqacApproves(eventId :number){
-
-        return this.http.put(`${this.baseUrl}/event/iqac/approves/${eventId}`,null);
-
-    }
-
-    departmentCoordinatorDisapproves(eventId: number, eventDisapprovalReason: string) {
-        const params = new HttpParams().set('eventDisapprovalReason', eventDisapprovalReason);
-        
-        return this.http.put(`${this.baseUrl}/event/dc/disapproves/${eventId}`, null, { params });
-    }
-    
-
-    hodDisapproves(eventId :number, eventDisapprovalReason: string){
-
-        const params = new HttpParams().set('eventDisapprovalReason', eventDisapprovalReason);
-
-        return this.http.put(`${this.baseUrl}/event/hod/disapproves/${eventId}`,null, {params});
-
-    }
-
-    deanDisapproves(eventId :number, eventDisapprovalReason: string){
-
-        const params = new HttpParams().set('eventDisapprovalReason', eventDisapprovalReason);
-
-        return this.http.put(`${this.baseUrl}/event/dean/disapproves/${eventId}`,null, {params});
-
-    }
-
-    iqacDisapproves(eventId :number, eventDisapprovalReason: string){
-
-        const params = new HttpParams().set('eventDisapprovalReason', eventDisapprovalReason);
-
-        return this.http.put(`${this.baseUrl}/event/iqac/disapproves/${eventId}`,null, {params});
-
-    }
-
-
-
+    return this.http.put(
+      `${this.baseUrl}/event/iqac/disapproves/${eventId}`,
+      null,
+      { params }
+    );
+  }
 }

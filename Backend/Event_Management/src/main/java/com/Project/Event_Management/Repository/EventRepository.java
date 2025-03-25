@@ -16,6 +16,9 @@ public interface EventRepository extends JpaRepository<Event,Long> {
     @Query("SELECT e FROM Event e WHERE e.approved = false")
     List<Event> getUnapprovedEvents();
 
+    @Query("SELECT e FROM Event e WHERE e.completed = true")
+    List<Event> getCompletedEvents();
+
     @Query("SELECT e FROM Event e WHERE e.approved = true")
     List<Event> getApprovedEvents();
 

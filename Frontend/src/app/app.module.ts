@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,7 +10,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
 
 import { LoginComponent } from './login-register/login/login.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
@@ -44,11 +46,12 @@ import { MoreDetailsComponent } from './events/more-details/more-details.compone
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { AllUsersComponent } from './users/all-users/all-users.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
-
+import { CompletedEventsComponent } from './events/completed-events/completed-events.component';
+import { CompletedEventAnalyticsComponent } from './events/completed-event-analytics/completed-event-analytics.component';
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
     LoginComponent,
     CreateUserComponent,
     DashboardComponent,
@@ -81,6 +84,8 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
     UserProfileComponent,
     AllUsersComponent,
     EditUserComponent,
+    CompletedEventsComponent,
+    CompletedEventAnalyticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,8 +98,8 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    AuthGuard,   
+    AuthGuard,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -41,6 +41,7 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers("/reset-password/**")
                                 .authenticated()
+                                .requestMatchers("/events/completed").permitAll()
                                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                                 .requestMatchers("/users/**").hasAuthority("EVENT_COORDINATOR")
                                 .requestMatchers("/events/status").permitAll()

@@ -57,6 +57,11 @@ public class EventController {
         return eventService.getUnapprovedEvents();
     }
 
+    @GetMapping("/events/completed")
+    public List<Event> getCompletedEvents(){
+        return eventService.getCompletedEvents();
+    }
+
     @GetMapping("/events/confirmed")
     public List<Event> getConfirmedEvents(){
 
