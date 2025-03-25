@@ -1,3 +1,152 @@
 <app-navbar></app-navbar>
 
-<p>completed-event-analytics works!</p>
+<section class="analytics-container">
+  <h1 class="page-title">Event Analytics Dashboard</h1>
+  <h1 class="page-title">'{{ event.eventTitle }}'</h1>
+  <!-- Key Metrics Section -->
+  <div class="metrics-section">
+    <div class="metrics-grid">
+      <mat-card class="metric-card">
+        <mat-card-header>
+          <mat-card-title>Total Registered</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ analytics.totalRegistered }}</h2>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="metric-card">
+        <mat-card-header>
+          <mat-card-title>Total Attended</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ analytics.totalAttended }}</h2>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="metric-card">
+        <mat-card-header>
+          <mat-card-title>Budget</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ analytics.budget | currency }}</h2>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="metric-card">
+        <mat-card-header>
+          <mat-card-title>Conducted On</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ event.date | date : "dd/MM/yyyy" }}</h2>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="charts-section">
+    <!-- Row 1: Line & Radial -->
+    <div class="chart-row">
+      <div class="chart-container">
+        <h3>Attendees Over Time</h3>
+        <apx-chart
+          [series]="lineChartOptions.series"
+          [chart]="lineChartOptions.chart"
+          [xaxis]="lineChartOptions.xaxis"
+          [legend]="lineChartOptions.legend"
+          [dataLabels]="lineChartOptions.dataLabels"
+        >
+        </apx-chart>
+      </div>
+
+      <div class="chart-container">
+        <h3>Satisfaction Score</h3>
+        <apx-chart
+          [series]="radialChartOptions.series"
+          [chart]="radialChartOptions.chart"
+          [labels]="radialChartOptions.labels"
+          [plotOptions]="radialChartOptions.plotOptions"
+          [fill]="radialChartOptions.fill"
+          [dataLabels]="radialChartOptions.dataLabels"
+        >
+        </apx-chart>
+      </div>
+    </div>
+
+    <!-- Row 2: Pie & Bar -->
+    <div class="chart-row">
+      <div class="chart-container">
+        <h3>Attendee Distribution</h3>
+        <apx-chart
+          [series]="pieChartOptions.series"
+          [chart]="pieChartOptions.chart"
+          [labels]="pieChartOptions.labels"
+          [responsive]="pieChartOptions.responsive"
+          [legend]="pieChartOptions.legend"
+          [dataLabels]="pieChartOptions.dataLabels"
+        >
+        </apx-chart>
+      </div>
+
+      <div class="chart-container">
+        <h3>Registrations vs. Attendance</h3>
+        <apx-chart
+          [series]="barChartOptions.series"
+          [chart]="barChartOptions.chart"
+          [xaxis]="barChartOptions.xaxis"
+          [legend]="barChartOptions.legend"
+          [dataLabels]="barChartOptions.dataLabels"
+        >
+        </apx-chart>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guests & Additional Metrics Section -->
+  <div class="guests-and-additional">
+    <!-- Key Guests -->
+    <div class="details-section">
+      <h2>Key Guests</h2>
+      <mat-list>
+        <mat-list-item *ngFor="let guest of analytics.keyGuests">
+          <mat-icon mat-list-icon>person</mat-icon>
+          <h4 mat-line>{{ guest }}</h4>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+    <!-- Additional Metrics -->
+    <div class="additional-info">
+      <h2>Additional Metrics</h2>
+      <div class="info-cards">
+        <mat-card class="info-card">
+          <mat-card-header>
+            <mat-card-title>Social Media Impressions</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2>{{ analytics.socialMediaImpressions }}</h2>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <mat-card-header>
+            <mat-card-title>Event Duration (hrs)</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2>{{ analytics.durationHours }}</h2>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <mat-card-header>
+            <mat-card-title>Survey Responses</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2>{{ analytics.surveyResponses }}</h2>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>
